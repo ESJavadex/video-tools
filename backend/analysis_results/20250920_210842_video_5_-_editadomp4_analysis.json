@@ -1,0 +1,1096 @@
+{
+  "original_filename": "video 5 - editado.mp4",
+  "analysis_id": "c50f57c2-c85a-42c2-b40d-dc1ad9101c6b",
+  "processed_at": "2025-09-20T19:08:42.547527",
+  "duration_seconds": 659.5,
+  "transcription": [
+    {
+      "timestamp": "00:00",
+      "text": "¿Qué me dirías si fueras capaz de conectar cualquier aplicación utilizando únicamente lenguaje natural sin saber absolutamente nada de programación?",
+      "start_seconds": 0.0,
+      "end_seconds": 9.48
+    },
+    {
+      "timestamp": "00:09",
+      "text": "En este video vamos a ver un concepto que se llama MCP, pero no te asustes porque es muy sencillo y entendiendo los conceptos básicos",
+      "start_seconds": 9.9,
+      "end_seconds": 17.9
+    },
+    {
+      "timestamp": "00:17",
+      "text": "vas a ser capaz de conectar cualquier aplicación entre sí.",
+      "start_seconds": 17.9,
+      "end_seconds": 21.84
+    },
+    {
+      "timestamp": "00:22",
+      "text": "Soy Javier Santos, ingeniero especializado en inteligencia artificial y hoy vamos a ver desde cero cómo poder conectar",
+      "start_seconds": 22.14,
+      "end_seconds": 29.4
+    },
+    {
+      "timestamp": "00:29",
+      "text": "cualquier aplicación a un LLM y poder hablar con él de manera natural, sin código, sin programar, solamente con lenguaje humano.",
+      "start_seconds": 29.4,
+      "end_seconds": 40.82
+    },
+    {
+      "timestamp": "00:41",
+      "text": "Para entender esto, vamos a explicar que es un MCP.",
+      "start_seconds": 41.28,
+      "end_seconds": 44.94
+    },
+    {
+      "timestamp": "00:45",
+      "text": "Un MCP son las siglas de Model Context Protocol, es una interfaz que se pone entre los LLMs y las aplicaciones.",
+      "start_seconds": 45.36,
+      "end_seconds": 53.98
+    },
+    {
+      "timestamp": "00:53",
+      "text": "Nosotros, cuando interactuamos con los LLMs, pues con ChagPT, con Gemini, con Cloud, lo hacemos mediante texto.",
+      "start_seconds": 53.98,
+      "end_seconds": 62.0
+    },
+    {
+      "timestamp": "01:02",
+      "text": "Sin embargo, cuando lo hacemos con aplicaciones, lo hacemos o bien a través de una interfaz web o bien a través de una API.",
+      "start_seconds": 62.28,
+      "end_seconds": 69.66
+    },
+    {
+      "timestamp": "01:09",
+      "text": "Una API es una manera de comunicarse a través de código que permite comunicar diferentes aplicaciones.",
+      "start_seconds": 69.9,
+      "end_seconds": 76.84
+    },
+    {
+      "timestamp": "01:16",
+      "text": "En este caso, el MCP lo que hace es simplificar esa conexión y nos abstrae del conocimiento intrínseco de la API.",
+      "start_seconds": 76.84,
+      "end_seconds": 86.82
+    },
+    {
+      "timestamp": "01:27",
+      "text": "Pero Javi, ¿qué estás diciendo? Vamos allá.",
+      "start_seconds": 87.0,
+      "end_seconds": 89.28
+    },
+    {
+      "timestamp": "01:29",
+      "text": "Ahora mismo, si no usamos MCP, que es lo que está haciendo el 99% de las personas,",
+      "start_seconds": 89.72,
+      "end_seconds": 95.06
+    },
+    {
+      "timestamp": "01:35",
+      "text": "cuando queremos conectarnos con Haspot, por ejemplo, o con Gmail o con Drive, o bien vamos a una plataforma no code,",
+      "start_seconds": 95.44,
+      "end_seconds": 102.46
+    },
+    {
+      "timestamp": "01:42",
+      "text": "o bien tenemos que hacer un programa específico buscando la documentación, comunicarnos, etc.",
+      "start_seconds": 102.46,
+      "end_seconds": 109.54
+    },
+    {
+      "timestamp": "01:49",
+      "text": "Entonces, toda comunicación con esa aplicación requiere un código.",
+      "start_seconds": 109.92,
+      "end_seconds": 114.86
+    },
+    {
+      "timestamp": "01:55",
+      "text": "Cada vez que integramos más aplicaciones, más complejos nuestro sistema,",
+      "start_seconds": 115.12,
+      "end_seconds": 120.5
+    },
+    {
+      "timestamp": "02:00",
+      "text": "es muy difícil de escalar porque si tenemos, imagina, 1.000 CRMs diferentes, la complejidad de mantener eso es increíble.",
+      "start_seconds": 120.82,
+      "end_seconds": 129.32
+    },
+    {
+      "timestamp": "02:09",
+      "text": "Sin embargo, con MCP, ¿qué tenemos? El mismo protocolo para todos.",
+      "start_seconds": 129.32,
+      "end_seconds": 134.38
+    },
+    {
+      "timestamp": "02:14",
+      "text": "Es decir, a mí me da igual como es la API de Haspot, como es la API de Gmail, de calendar.",
+      "start_seconds": 134.7,
+      "end_seconds": 141.28
+    },
+    {
+      "timestamp": "02:21",
+      "text": "No me importa porque ellos ya tienen, el MCP tienen ya esa conexión para poder meterlo en mi inteligencia artificial",
+      "start_seconds": 141.62,
+      "end_seconds": 149.22
+    },
+    {
+      "timestamp": "02:29",
+      "text": "y poder hablar con Gmail, Gmail, o lo que sea.",
+      "start_seconds": 149.22,
+      "end_seconds": 153.78
+    },
+    {
+      "timestamp": "02:34",
+      "text": "Entonces, ¿qué es lo interesante de esto?",
+      "start_seconds": 154.14,
+      "end_seconds": 155.8
+    },
+    {
+      "timestamp": "02:35",
+      "text": "Tú puedes conectar únicamente una aplicación, por ejemplo, Google Calendar a través de MCP,",
+      "start_seconds": 155.8,
+      "end_seconds": 161.86
+    },
+    {
+      "timestamp": "02:42",
+      "text": "y hacer una pregunta literal. Dime qué reuniones tengo esta tarde.",
+      "start_seconds": 162.14,
+      "end_seconds": 167.5
+    },
+    {
+      "timestamp": "02:47",
+      "text": "Entonces, el protocolo va a interactuar entre tu pregunta y la API oficial de calendar",
+      "start_seconds": 167.9,
+      "end_seconds": 174.8
+    },
+    {
+      "timestamp": "02:54",
+      "text": "y va a buscar las reuniones que tienes esta tarde.",
+      "start_seconds": 174.8,
+      "end_seconds": 178.76
+    },
+    {
+      "timestamp": "02:59",
+      "text": "Pero hay muchos más usos. Por ejemplo, tú puedes interactuar con tus documentos,",
+      "start_seconds": 179.1,
+      "end_seconds": 183.3
+    },
+    {
+      "timestamp": "03:03",
+      "text": "con Slack, con Gmail como hemos comentado, con Figma, con PlayaWrite, con GitHub,",
+      "start_seconds": 183.3,
+      "end_seconds": 189.46
+    },
+    {
+      "timestamp": "03:09",
+      "text": "con miles y miles de aplicaciones diferentes.",
+      "start_seconds": 189.86,
+      "end_seconds": 193.28
+    },
+    {
+      "timestamp": "03:13",
+      "text": "Y lo interesante de esto es que no necesitamos saber programar para hacerlo.",
+      "start_seconds": 193.82,
+      "end_seconds": 197.58
+    },
+    {
+      "timestamp": "03:18",
+      "text": "De hecho, vamos a hacer un ejemplo. Vamos a conectarnos con el MCP de Gmail",
+      "start_seconds": 198.08,
+      "end_seconds": 202.72
+    },
+    {
+      "timestamp": "03:22",
+      "text": "y vamos a pedir que nos haga un resumen de los emails de hoy.",
+      "start_seconds": 202.72,
+      "end_seconds": 206.8
+    },
+    {
+      "timestamp": "03:27",
+      "text": "Y lo que vamos a hacer es configurar nuestro servidor MCP.",
+      "start_seconds": 207.1,
+      "end_seconds": 210.3
+    },
+    {
+      "timestamp": "03:30",
+      "text": "En este caso, para hacerlo de manera sencilla, damos al más.",
+      "start_seconds": 210.54,
+      "end_seconds": 215.34
+    },
+    {
+      "timestamp": "03:35",
+      "text": "Venimos aquí que pone Usaconectores, pulsamos, y nos aparece este desplegable de añadir fuentes.",
+      "start_seconds": 215.7,
+      "end_seconds": 222.04
+    },
+    {
+      "timestamp": "03:42",
+      "text": "Chag.pt ya tiene conexión con email, calendar, box y el calendario de Outlook.",
+      "start_seconds": 222.24,
+      "end_seconds": 227.56
+    },
+    {
+      "timestamp": "03:48",
+      "text": "Sin embargo, os voy a enseñar cómo se haría si no tuviera esta conexión.",
+      "start_seconds": 228.1,
+      "end_seconds": 232.4
+    },
+    {
+      "timestamp": "03:52",
+      "text": "Entonces, le daríamos aquí a conectar más, bajamos y vemos explorar conectores.",
+      "start_seconds": 232.86,
+      "end_seconds": 237.36
+    },
+    {
+      "timestamp": "03:57",
+      "text": "Estos son los que trae por defecto, no usé un Haspot, etc.",
+      "start_seconds": 237.36,
+      "end_seconds": 240.36
+    },
+    {
+      "timestamp": "04:00",
+      "text": "Pero aquí hay un botón que pone crear.",
+      "start_seconds": 240.98,
+      "end_seconds": 243.66
+    },
+    {
+      "timestamp": "04:04",
+      "text": "Este botón ahora mismo está en beta.",
+      "start_seconds": 244.04,
+      "end_seconds": 246.04
+    },
+    {
+      "timestamp": "04:06",
+      "text": "Sin embargo, nos permite ya crear nuestros conectores personalizados.",
+      "start_seconds": 246.54,
+      "end_seconds": 250.36
+    },
+    {
+      "timestamp": "04:10",
+      "text": "Vamos a empezar por Gmail, que es el caso que ya está conectado",
+      "start_seconds": 250.64,
+      "end_seconds": 255.56
+    },
+    {
+      "timestamp": "04:15",
+      "text": "y nos va a permitir aprender cómo funciona este protocolo,",
+      "start_seconds": 255.56,
+      "end_seconds": 258.36
+    },
+    {
+      "timestamp": "04:19",
+      "text": "por lo cual voy a cerrar, bajamos y pulsamos en Gmail.",
+      "start_seconds": 259.02,
+      "end_seconds": 262.52
+    },
+    {
+      "timestamp": "04:22",
+      "text": "Nos sale este desplegable de nuevo, donde podemos ver qué podemos hacer.",
+      "start_seconds": 262.52,
+      "end_seconds": 267.04
+    },
+    {
+      "timestamp": "04:27",
+      "text": "En este caso, podemos usar el chat de Chag.pt, el modo research para hacer una investigación,",
+      "start_seconds": 267.52,
+      "end_seconds": 273.34
+    },
+    {
+      "timestamp": "04:33",
+      "text": "por ejemplo, sobre todos, absolutamente todos los emails que tenemos,",
+      "start_seconds": 273.7,
+      "end_seconds": 277.88
+    },
+    {
+      "timestamp": "04:38",
+      "text": "o el modo agente, un modo muy interesante que nos va a permitir a Chag.pt navegar",
+      "start_seconds": 278.52,
+      "end_seconds": 283.82
+    },
+    {
+      "timestamp": "04:43",
+      "text": "y realizar acciones en base a esos correos.",
+      "start_seconds": 283.82,
+      "end_seconds": 286.86
+    },
+    {
+      "timestamp": "04:47",
+      "text": "Para empezar, le damos a conectar.",
+      "start_seconds": 287.18,
+      "end_seconds": 288.78
+    },
+    {
+      "timestamp": "04:48",
+      "text": "Nos sale la conexión que podemos hacer, continuamos, nos logeamos,",
+      "start_seconds": 288.78,
+      "end_seconds": 293.62
+    },
+    {
+      "timestamp": "04:54",
+      "text": "aquí tenemos nuestra cuenta, continuamos y Gmail está ahora conectado.",
+      "start_seconds": 294.02,
+      "end_seconds": 298.58
+    },
+    {
+      "timestamp": "04:58",
+      "text": "Cerramos aquí y volvemos otra vez a dar al más conectores, añadir fuentes",
+      "start_seconds": 298.8,
+      "end_seconds": 303.68
+    },
+    {
+      "timestamp": "05:03",
+      "text": "y ya vemos que pone aquí auto.",
+      "start_seconds": 303.68,
+      "end_seconds": 305.4
+    },
+    {
+      "timestamp": "05:05",
+      "text": "Con esto nos aseguramos que este servidor está conectado.",
+      "start_seconds": 305.82,
+      "end_seconds": 309.56
+    },
+    {
+      "timestamp": "05:09",
+      "text": "Vamos a hacer una pregunta muy sencilla, haz un resumen de los emails de ayer y de hoy.",
+      "start_seconds": 309.9,
+      "end_seconds": 316.52
+    },
+    {
+      "timestamp": "05:16",
+      "text": "Como veis, vamos a entrar en esta cuenta, esta cuenta la uso sobre todo para spam,",
+      "start_seconds": 316.52,
+      "end_seconds": 320.96
+    },
+    {
+      "timestamp": "05:21",
+      "text": "entonces vemos aquí un poquito los correos y ha terminado.",
+      "start_seconds": 321.24,
+      "end_seconds": 324.26
+    },
+    {
+      "timestamp": "05:24",
+      "text": "Entonces, hoy qué me dice?",
+      "start_seconds": 324.64,
+      "end_seconds": 325.86
+    },
+    {
+      "timestamp": "05:26",
+      "text": "Pues mira, hay un correo electrónico que es totalmente cierto de que he autorizado",
+      "start_seconds": 326.04,
+      "end_seconds": 329.8
+    },
+    {
+      "timestamp": "05:29",
+      "text": "a Chag.pt para acceder a los datos.",
+      "start_seconds": 329.8,
+      "end_seconds": 331.44
+    },
+    {
+      "timestamp": "05:32",
+      "text": "Promoción de, bueno, HumePod, Idea Browser, Globo, BlueBanana, SubstackSec",
+      "start_seconds": 332.06,
+      "end_seconds": 338.16
+    },
+    {
+      "timestamp": "05:38",
+      "text": "y Comartech.",
+      "start_seconds": 338.16,
+      "end_seconds": 339.16
+    },
+    {
+      "timestamp": "05:39",
+      "text": "Bueno, ya has visto cómo se conecta el primer MCP,",
+      "start_seconds": 339.48,
+      "end_seconds": 342.26
+    },
+    {
+      "timestamp": "05:42",
+      "text": "pero puedes pensar que esto es algo, bueno, me va a ayudar, pero tampoco me va a cambiar la vida.",
+      "start_seconds": 342.26,
+      "end_seconds": 347.76
+    },
+    {
+      "timestamp": "05:48",
+      "text": "Sin embargo, vamos con un caso mucho más práctico.",
+      "start_seconds": 348.0,
+      "end_seconds": 351.5
+    },
+    {
+      "timestamp": "05:51",
+      "text": "Imagina que realizas campañas de Google Ads o de Meta o...",
+      "start_seconds": 351.84,
+      "end_seconds": 357.74
+    },
+    {
+      "timestamp": "05:57",
+      "text": "y te interesa saber un poco cómo han ido.",
+      "start_seconds": 357.74,
+      "end_seconds": 360.16
+    },
+    {
+      "timestamp": "06:00",
+      "text": "Y ahora mismo no tengo ninguna campaña en Google Ads, pero hay un MCP de Google Ads.",
+      "start_seconds": 360.6,
+      "end_seconds": 365.96
+    },
+    {
+      "timestamp": "06:06",
+      "text": "En la descripción os dejo el enlace para que podáis bichear.",
+      "start_seconds": 366.16,
+      "end_seconds": 369.68
+    },
+    {
+      "timestamp": "06:09",
+      "text": "¿Qué podemos hacer con este MCP?",
+      "start_seconds": 369.98,
+      "end_seconds": 371.62
+    },
+    {
+      "timestamp": "06:11",
+      "text": "Podemos ver todas las cuentas de Google Ads, podemos hacer report y análisis de campañas,",
+      "start_seconds": 371.62,
+      "end_seconds": 377.82
+    },
+    {
+      "timestamp": "06:18",
+      "text": "ver la performance de los anuncios, o sea, podemos hacer absolutamente todo lo que tenemos en la interfaz de Google Ads,",
+      "start_seconds": 378.1,
+      "end_seconds": 386.02
+    },
+    {
+      "timestamp": "06:26",
+      "text": "añadido a que podemos meter ese plus de inteligencia artificial que va a permitir analizar los datos",
+      "start_seconds": 386.14,
+      "end_seconds": 393.08
+    },
+    {
+      "timestamp": "06:33",
+      "text": "y que nosotros nos comuniquemos por texto.",
+      "start_seconds": 393.08,
+      "end_seconds": 395.62
+    },
+    {
+      "timestamp": "06:35",
+      "text": "Ver cómo ha funcionado una campaña es fácil, podríamos crear nuestros dashboards en la interfaz web,",
+      "start_seconds": 395.62,
+      "end_seconds": 402.16
+    },
+    {
+      "timestamp": "06:42",
+      "text": "copiarlos y pegarlos en chat gpt y preguntar.",
+      "start_seconds": 402.46,
+      "end_seconds": 405.28
+    },
+    {
+      "timestamp": "06:45",
+      "text": "Sin embargo, eso nos llevaría media hora, pero con este MCP nos lleva 20 segundos,",
+      "start_seconds": 405.72,
+      "end_seconds": 411.82
+    },
+    {
+      "timestamp": "06:52",
+      "text": "lo que tardemos en escribir la query inicial.",
+      "start_seconds": 412.24,
+      "end_seconds": 414.88
+    },
+    {
+      "timestamp": "06:55",
+      "text": "Otro MCP muy interesante también, el de Google Analytics, además este MCP es oficial.",
+      "start_seconds": 415.36,
+      "end_seconds": 421.46
+    },
+    {
+      "timestamp": "07:01",
+      "text": "Aquí tenéis toda la información de este MCP, ahora mismo están en base experimental,",
+      "start_seconds": 421.46,
+      "end_seconds": 426.12
+    },
+    {
+      "timestamp": "07:06",
+      "text": "pero es oficial, estamos en la cuenta oficial de Google, por lo cual es más seguro usarlo que MCPs creados por la comunidad.",
+      "start_seconds": 426.66,
+      "end_seconds": 433.7
+    },
+    {
+      "timestamp": "07:14",
+      "text": "Aquí hay un montón de información y parece que es súper complicado,",
+      "start_seconds": 434.34,
+      "end_seconds": 439.8
+    },
+    {
+      "timestamp": "07:20",
+      "text": "pero si os interesa puedo enseñaros de manera más práctica cómo poder utilizar estos MCPs.",
+      "start_seconds": 440.2,
+      "end_seconds": 446.46
+    },
+    {
+      "timestamp": "07:26",
+      "text": "Estos MCPs no están josteados por ellos, es decir, los tenéis vosotros que levantar en vuestro ordenador,",
+      "start_seconds": 446.48,
+      "end_seconds": 455.2
+    },
+    {
+      "timestamp": "07:35",
+      "text": "por lo cual ahora mismo sin crear ese servidor no se podría usar desde chat gpt.",
+      "start_seconds": 455.64,
+      "end_seconds": 462.04
+    },
+    {
+      "timestamp": "07:42",
+      "text": "En el siguiente vídeo veremos cómo se puede levantar y ejecutar este tipo de servidores de manera totalmente gratuita.",
+      "start_seconds": 462.46,
+      "end_seconds": 470.02
+    },
+    {
+      "timestamp": "07:50",
+      "text": "Entonces, volviendo a nuestro esquema, ¿qué nos permite hacer estos MCPs?",
+      "start_seconds": 470.02,
+      "end_seconds": 474.38
+    },
+    {
+      "timestamp": "07:54",
+      "text": "Por ejemplo, análisis de datos, podríamos tener el MCP de Google Ads, Google Analytics, Meta Ads y Search Console",
+      "start_seconds": 474.7,
+      "end_seconds": 483.24
+    },
+    {
+      "timestamp": "08:03",
+      "text": "y preguntar cómo ha ido este mes en visitas, costes, etc.",
+      "start_seconds": 483.24,
+      "end_seconds": 488.44
+    },
+    {
+      "timestamp": "08:09",
+      "text": "Pues con esa simple query podríamos tener un análisis completo en segundos.",
+      "start_seconds": 489.04,
+      "end_seconds": 493.38
+    },
+    {
+      "timestamp": "08:13",
+      "text": "Entonces, ¿qué necesitamos para que funcionen estos MCPs?",
+      "start_seconds": 493.76,
+      "end_seconds": 497.18
+    },
+    {
+      "timestamp": "08:17",
+      "text": "Yo os he mostrado el MCP de Gmail, hemos visto esa query para preguntar sobre mis correos de ayer,",
+      "start_seconds": 497.18,
+      "end_seconds": 505.08
+    },
+    {
+      "timestamp": "08:25",
+      "text": "pero ¿por qué no os muestro ahora el de Google Analytics?",
+      "start_seconds": 505.44,
+      "end_seconds": 507.86
+    },
+    {
+      "timestamp": "08:28",
+      "text": "Porque el de Google Analytics necesitamos ejecutarlo en nuestro ordenador.",
+      "start_seconds": 508.28,
+      "end_seconds": 512.28
+    },
+    {
+      "timestamp": "08:32",
+      "text": "Actualmente Google no da soporte a tenerlo josteado por ellos,",
+      "start_seconds": 512.88,
+      "end_seconds": 518.44
+    },
+    {
+      "timestamp": "08:38",
+      "text": "entonces lo tenemos que hacer nosotros.",
+      "start_seconds": 518.54,
+      "end_seconds": 519.7
+    },
+    {
+      "timestamp": "08:40",
+      "text": "En el siguiente vídeo vamos a ver cómo.",
+      "start_seconds": 520.28,
+      "end_seconds": 522.32
+    },
+    {
+      "timestamp": "08:42",
+      "text": "¿Qué necesitamos para ello?",
+      "start_seconds": 522.32,
+      "end_seconds": 523.94
+    },
+    {
+      "timestamp": "08:44",
+      "text": "Un cliente que es ChagPT, Cloud, Yemini y luego interfaces, como puede ser Cursor, Windsor, Cloud Code, Yemini, Cli.",
+      "start_seconds": 524.54,
+      "end_seconds": 533.8
+    },
+    {
+      "timestamp": "08:54",
+      "text": "Necesitamos el conector en el ejemplo de OpenAI, lo teníamos con Gmail ya hecho.",
+      "start_seconds": 534.28,
+      "end_seconds": 539.44
+    },
+    {
+      "timestamp": "08:59",
+      "text": "En el de Google Ads, lo tenemos que hostear nosotros.",
+      "start_seconds": 539.92,
+      "end_seconds": 542.58
+    },
+    {
+      "timestamp": "09:03",
+      "text": "Entonces, este conector es el que necesitamos ejecutar en nuestro ordenador.",
+      "start_seconds": 543.1,
+      "end_seconds": 547.06
+    },
+    {
+      "timestamp": "09:07",
+      "text": "Y luego la herramienta, esto existe, pues en el caso de Google Ads,",
+      "start_seconds": 547.06,
+      "end_seconds": 551.14
+    },
+    {
+      "timestamp": "09:11",
+      "text": "Google Ads ya lo tienen ellos josteado, ya estar corriendo en las máquinas de Google,",
+      "start_seconds": 551.48,
+      "end_seconds": 556.52
+    },
+    {
+      "timestamp": "09:17",
+      "text": "entonces necesitamos ese puente entre ChagPT y la herramienta.",
+      "start_seconds": 557.14,
+      "end_seconds": 562.16
+    },
+    {
+      "timestamp": "09:22",
+      "text": "Y ahí es donde está nuestro servidor MCP.",
+      "start_seconds": 562.48,
+      "end_seconds": 564.86
+    },
+    {
+      "timestamp": "09:25",
+      "text": "Entonces, casos de uso que hacemos a diario y que realmente animamos a las personas no técnicas que hagan.",
+      "start_seconds": 565.18,
+      "end_seconds": 572.0
+    },
+    {
+      "timestamp": "09:32",
+      "text": "Gestionar el CRM, preguntar por leads, hacer leads scoring, recuperar una lista de correos,",
+      "start_seconds": 572.0,
+      "end_seconds": 579.5
+    },
+    {
+      "timestamp": "09:39",
+      "text": "que pasó un día concreto, etcétera.",
+      "start_seconds": 579.64,
+      "end_seconds": 582.4
+    },
+    {
+      "timestamp": "09:42",
+      "text": "Programar reuniones, tenemos conectado Gmail con Calendar y cada vez que nos llega un correo",
+      "start_seconds": 582.66,
+      "end_seconds": 588.0
+    },
+    {
+      "timestamp": "09:48",
+      "text": "que tiene que ver con una propuesta de reunión, consultamos al Calendar",
+      "start_seconds": 588.76,
+      "end_seconds": 593.92
+    },
+    {
+      "timestamp": "09:53",
+      "text": "y proponemos reuniones libres que tenemos en el calendario.",
+      "start_seconds": 593.92,
+      "end_seconds": 598.14
+    },
+    {
+      "timestamp": "09:58",
+      "text": "Lo usamos mucho para analizar código, tenemos GitHub conectado y tenemos PlayWrite.",
+      "start_seconds": 598.14,
+      "end_seconds": 603.4
+    },
+    {
+      "timestamp": "10:03",
+      "text": "PlayWrite es una herramienta que te permite ejecutar navegadores de manera autónoma.",
+      "start_seconds": 603.58,
+      "end_seconds": 609.42
+    },
+    {
+      "timestamp": "10:09",
+      "text": "Entonces, cuando estamos programando nos viene muy bien.",
+      "start_seconds": 609.74,
+      "end_seconds": 612.0
+    },
+    {
+      "timestamp": "10:12",
+      "text": "Gestión de proyectos, nosotros utilizamos Linear, que es como un Gira",
+      "start_seconds": 612.54,
+      "end_seconds": 616.42
+    },
+    {
+      "timestamp": "10:16",
+      "text": "y una vez a la semana hacemos un report de cómo ha ido la semana.",
+      "start_seconds": 616.42,
+      "end_seconds": 620.54
+    },
+    {
+      "timestamp": "10:21",
+      "text": "Yo no me miro las 20 tarjetas que he gestionado, sino que voy aquí y digo hace un resumen de esta semana.",
+      "start_seconds": 621.12,
+      "end_seconds": 627.68
+    },
+    {
+      "timestamp": "10:27",
+      "text": "Y te hace un pulse perfecto.",
+      "start_seconds": 627.68,
+      "end_seconds": 629.68
+    },
+    {
+      "timestamp": "10:30",
+      "text": "Y como soporte al cliente lo puedes conectar con Notion, con Drive, con un montón de aplicaciones",
+      "start_seconds": 630.48,
+      "end_seconds": 636.16
+    },
+    {
+      "timestamp": "10:36",
+      "text": "que te permiten leer y recibir toda esa información, ir a hacer una respuesta",
+      "start_seconds": 636.16,
+      "end_seconds": 642.84
+    },
+    {
+      "timestamp": "10:42",
+      "text": "en base a todo ese conocimiento.",
+      "start_seconds": 642.84,
+      "end_seconds": 644.46
+    },
+    {
+      "timestamp": "10:44",
+      "text": "Y aquí termina el vídeo, espero que os haya gustado y que hayáis cogido todos los conceptos básicos",
+      "start_seconds": 644.74,
+      "end_seconds": 649.68
+    },
+    {
+      "timestamp": "10:50",
+      "text": "de lo que es un MCP.",
+      "start_seconds": 650.2,
+      "end_seconds": 651.32
+    },
+    {
+      "timestamp": "10:51",
+      "text": "Si os interesa profundizar más, déjadmelo en los comentarios",
+      "start_seconds": 651.84,
+      "end_seconds": 654.44
+    },
+    {
+      "timestamp": "10:54",
+      "text": "y prepare un vídeo para usar estos MCPs en local.",
+      "start_seconds": 654.44,
+      "end_seconds": 659.0
+    },
+    {
+      "timestamp": "10:59",
+      "text": "No olvidéis entrar aquí en el link de la comunidad y nos vemos en el siguiente vídeo.",
+      "start_seconds": 659.5,
+      "end_seconds": 663.64
+    }
+  ],
+  "suggestions": {
+    "title": "Conecta Apps SIN Código: ¡El Secreto MCP Revelado!",
+    "titles": [],
+    "description": "¿Cansado de APIs complejas? Descubre el poder del MCP (Model Context Protocol) para conectar tus apps favoritas con lenguaje natural, ¡sin una sola línea de código! Javier Santos, experto en IA, te guía desde cero para entender cómo integrar Gmail, Google Ads, Google Analytics y más a tus LLMs (ChatGPT, Gemini, etc.) de forma sencilla. Aprende a usar el MCP para automatizar tareas, analizar datos, gestionar CRMs y optimizar tus campañas de marketing digital. Descubre cómo crear conectores personalizados y saca el máximo partido a la inteligencia artificial para potenciar tu productividad. ¡No te pierdas el próximo video donde aprenderás a hostear tus propios MCPs GRATIS! #nocode #IA #automatizacion #MCP #LLM #chatgpt #googleads #googleanalytics #inteligenciaartificial",
+    "thumbnail_prompt": "Imagen llamativa con un cerebro digital conectado a logos de Gmail, Google Ads, y otras aplicaciones populares. Texto superpuesto: '¡CONECTA TUS APPS SIN CÓDIGO!'. Fondo futurista con colores azul y morado. Javier Santos en una esquina, sonriendo.",
+    "highlights": [
+      {
+        "timestamp": "00:00",
+        "text": "¿Conectar apps con lenguaje natural sin programar?",
+        "start_seconds": 0.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "00:09",
+        "text": "Introducción al concepto MCP (Model Context Protocol)",
+        "start_seconds": 9.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "00:22",
+        "text": "Javier Santos: IA y conexión de aplicaciones a LLMs",
+        "start_seconds": 22.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "00:41",
+        "text": "¿Qué es un MCP? (Model Context Protocol)",
+        "start_seconds": 41.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "00:45",
+        "text": "MCP como interfaz entre LLMs y aplicaciones",
+        "start_seconds": 45.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "00:53",
+        "text": "Comunicación con LLMs vs. aplicaciones (APIs)",
+        "start_seconds": 53.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:09",
+        "text": "APIs y la simplificación con MCP",
+        "start_seconds": 69.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:29",
+        "text": "El problema de conectar apps sin MCP",
+        "start_seconds": 89.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:35",
+        "text": "Plataformas no code vs. código específico",
+        "start_seconds": 95.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:55",
+        "text": "Complejidad de escalar integraciones sin MCP",
+        "start_seconds": 115.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "02:09",
+        "text": "Ventajas del protocolo MCP unificado",
+        "start_seconds": 129.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "02:14",
+        "text": "Independencia de la API de cada aplicación",
+        "start_seconds": 134.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "02:35",
+        "text": "Ejemplo: Preguntar a Google Calendar sobre reuniones",
+        "start_seconds": 155.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "02:59",
+        "text": "Interactuar con documentos, Slack, Gmail, Figma, GitHub",
+        "start_seconds": 179.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:13",
+        "text": "¡Sin necesidad de programar!",
+        "start_seconds": 193.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:18",
+        "text": "Ejemplo práctico: Resumen de emails de Gmail",
+        "start_seconds": 198.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:27",
+        "text": "Configuración del servidor MCP",
+        "start_seconds": 207.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:35",
+        "text": "Añadir fuentes y explorar conectores",
+        "start_seconds": 215.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:42",
+        "text": "Conexiones predefinidas: Email, Calendar, Box, Outlook",
+        "start_seconds": 222.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:48",
+        "text": "Creación de conectores personalizados (beta)",
+        "start_seconds": 228.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "04:10",
+        "text": "Gmail como ejemplo para entender el protocolo",
+        "start_seconds": 250.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "04:22",
+        "text": "Opciones: Chat, Research, Modo Agente",
+        "start_seconds": 262.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "04:47",
+        "text": "Conectando Gmail",
+        "start_seconds": 287.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "04:58",
+        "text": "Verificación de la conexión automática",
+        "start_seconds": 298.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "05:09",
+        "text": "Pregunta sencilla: Resumen de emails de ayer y hoy",
+        "start_seconds": 309.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "05:24",
+        "text": "Resultado: Resumen de emails de spam",
+        "start_seconds": 324.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "05:42",
+        "text": "Caso práctico: Campañas de Google Ads",
+        "start_seconds": 342.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "06:00",
+        "text": "MCP de Google Ads: Análisis y reportes",
+        "start_seconds": 360.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "06:11",
+        "text": "Performance de anuncios y comunicación por texto",
+        "start_seconds": 371.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "06:35",
+        "text": "Facilidad de análisis con MCP vs. dashboards",
+        "start_seconds": 395.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "06:55",
+        "text": "MCP de Google Analytics (oficial y experimental)",
+        "start_seconds": 415.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "07:14",
+        "text": "MCPs no josteados: Ejecución local necesaria",
+        "start_seconds": 434.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "07:26",
+        "text": "Próximo vídeo: Levantar servidores MCPs gratis",
+        "start_seconds": 446.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "07:50",
+        "text": "Resumen del esquema MCP",
+        "start_seconds": 470.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "07:54",
+        "text": "Análisis de datos: Google Ads, Analytics, Meta Ads, Search Console",
+        "start_seconds": 474.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "08:13",
+        "text": "¿Qué necesitamos para que funcionen los MCPs?",
+        "start_seconds": 493.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "08:25",
+        "text": "Gmail vs. Google Analytics (ejecución local)",
+        "start_seconds": 505.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "08:42",
+        "text": "Cliente (ChagPT, Cloud, Gemini) e interfaces",
+        "start_seconds": 522.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "08:54",
+        "text": "Conector (Gmail ya hecho, Google Ads a hostear)",
+        "start_seconds": 534.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:07",
+        "text": "Herramienta (Google Ads corriendo en Google)",
+        "start_seconds": 547.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:22",
+        "text": "El servidor MCP como puente",
+        "start_seconds": 562.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:25",
+        "text": "Casos de uso diarios (para no técnicos)",
+        "start_seconds": 565.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:32",
+        "text": "Gestión de CRM: Leads, scoring, listas de correos",
+        "start_seconds": 572.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:42",
+        "text": "Programar reuniones con Gmail y Calendar",
+        "start_seconds": 582.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:58",
+        "text": "Análisis de código con GitHub y PlayWrite",
+        "start_seconds": 598.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "10:12",
+        "text": "Gestión de proyectos con Linear",
+        "start_seconds": 612.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "10:30",
+        "text": "Soporte al cliente con Notion, Drive",
+        "start_seconds": 630.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "10:44",
+        "text": "Fin del vídeo: Conceptos básicos de MCP",
+        "start_seconds": 644.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "10:51",
+        "text": "Comentarios: Profundizar en MCPs locales",
+        "start_seconds": 651.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "10:59",
+        "text": "Link a la comunidad y próximo vídeo",
+        "start_seconds": 659.0,
+        "end_seconds": null
+      }
+    ]
+  }
+}

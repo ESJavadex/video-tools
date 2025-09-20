@@ -1,0 +1,88 @@
+{
+  "original_filename": "Video 4 creador de titulos y descripciones.mp4",
+  "analysis_id": "3e248aea-7ff2-482a-a7d1-9b570c9e9b12",
+  "processed_at": "2025-09-20T14:03:12.083020",
+  "duration_seconds": 104.0,
+  "transcription": [
+    {
+      "timestamp": "00:00",
+      "text": "Buenas a todos, soy Javi, ingeniero especializado en Inteligencia artificial, y hoy vamos a ver a cómo crear un SAS desde cero.",
+      "start_seconds": 0.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:08",
+      "text": "En mis ratos libres, aparte de programar, eh soy inversor. Ahora mismo, tal como está el panorama, cualquier persona con unos mínimos conocimientos de informática, ya no hablo de programación, sino de informática, sería capaz de replicar cualquier SAS para uso personal no es lo mismo",
+      "start_seconds": 8.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:24",
+      "text": "Ojito esto que digo, porque personal no es lo mismo que replicar un SAS para millones de personas. Como bien sabemos, realmente el software, lo complicado hoy en día, que tú puedes crear un programa simplemente escribiendo lenguaje natural, no es el programa, sino es la escalabilidad, es la seguridad y el mantenimiento de ese programa.",
+      "start_seconds": 24.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:43",
+      "text": "Ahora mismo, para uso personal, esos tres temas nos dan muy igual. Si nosotros vamos a usar un programa que va a estar alojado en nuestro ordenador en local, que lo vamos a utilizar solo nosotros, que lo va a mantener Cloud e code y que nos da igual que haya bugs, ahora mismo cualquier SAS, prácticamente, el vamos a decir, por no decir cualquier, vamos a decidir",
+      "start_seconds": 43.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:54",
+      "text": "hacer el 99% de los SAS que puedas imaginar, los podemos hacer en casa. Cloud code, bueno, a mí me gusta aquí. Entonces, ¿qué vamos a hacer? Pues yo la idea que tengo es crear una aplicación full stack que en base a nuestros gustos nos genera una biblioteca de libros y nos da los insights y un resumen.",
+      "start_seconds": 54.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "01:21",
+      "text": "En mis ratos libres, aparte de programar, eh soy inversor.",
+      "start_seconds": 81.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "01:21",
+      "text": "En mis ratos libres, aparte de programar, eh soy inversor. Ahora mismo, tal como está el panorama, cualquier persona con unos mínimos conocimientos de informática, ya no hablo de programación, sino de informática, sería capaz de replicar cualquier SAS para uso personal no es lo mismo",
+      "start_seconds": 81.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "01:37",
+      "text": "En este video, vamos a analizar cómo un simple proyecto personal puede transformarse en un SAAS escalable y rentable",
+      "start_seconds": 97.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "01:44",
+      "text": "Te muestro, paso a paso, cómo transformar una simple idea en un SAAS que funciona",
+      "start_seconds": 104.0,
+      "end_seconds": null
+    }
+  ],
+  "suggestions": {
+    "title": "¿Transformar idea en SAAS rentable?: El proyecto revelado",
+    "titles": [],
+    "description": "En este video, desvelo cómo transformar una idea simple en un SAAS rentable. Analizo los costes ocultos, la escalabilidad, y las estrategias para monetizar un proyecto personal. Aprende a optimizar tu tiempo y recursos para un emprendimiento de éxito en el mundo del software. (Video de 2023)",
+    "thumbnail_prompt": "Ingeniero con gafas explicando apasionadamente, gestos amplios, fondo futurista azul y dorado. SAAS: ¿Éxito o Fracaso? Iconos de gráficas, advertencias",
+    "highlights": [
+      {
+        "timestamp": "00:24",
+        "text": "Explicando la diferencia entre uso personal y un SAAS para millones",
+        "start_seconds": 24.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:37",
+        "text": "Objetivo del video: Analizar cómo un proyecto personal se transforma en SAAS",
+        "start_seconds": 97.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:51",
+        "text": "Criterios de éxito para que ese SAAS sea rentable y escale",
+        "start_seconds": 111.0,
+        "end_seconds": null
+      }
+    ]
+  }
+}

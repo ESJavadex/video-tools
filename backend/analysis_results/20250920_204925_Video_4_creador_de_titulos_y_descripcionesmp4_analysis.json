@@ -1,0 +1,796 @@
+{
+  "original_filename": "Video 4 creador de titulos y descripciones.mp4",
+  "analysis_id": "ab16d888-0e4f-46ad-821d-3e47851833e5",
+  "processed_at": "2025-09-20T18:49:25.196553",
+  "duration_seconds": 697.3,
+  "transcription": [
+    {
+      "timestamp": "00:00",
+      "text": "Buenas a todos, soy Javi, ingeniero especializado en inteligencia artificial",
+      "start_seconds": 0.0,
+      "end_seconds": 3.38
+    },
+    {
+      "timestamp": "00:03",
+      "text": "y hoy vamos a ver cómo crear un programa a partir de una idea.",
+      "start_seconds": 3.38,
+      "end_seconds": 7.84
+    },
+    {
+      "timestamp": "00:08",
+      "text": "Todas las semanas me encanta hacer programas en mis ratos libres",
+      "start_seconds": 8.04,
+      "end_seconds": 11.16
+    },
+    {
+      "timestamp": "00:11",
+      "text": "para cosas que necesito en el día a día.",
+      "start_seconds": 11.16,
+      "end_seconds": 13.78
+    },
+    {
+      "timestamp": "00:14",
+      "text": "Hoy iba a subir un video y YouTube, pero no sabía que título poner ni que descripción.",
+      "start_seconds": 14.06,
+      "end_seconds": 18.68
+    },
+    {
+      "timestamp": "00:19",
+      "text": "Entonces me iba a crear un programa y tal en 10 minutos de cómo hacerlo.",
+      "start_seconds": 19.08,
+      "end_seconds": 22.5
+    },
+    {
+      "timestamp": "00:22",
+      "text": "Para mí esto es algo que hago prácticamente a diario.",
+      "start_seconds": 22.74,
+      "end_seconds": 25.66
+    },
+    {
+      "timestamp": "00:25",
+      "text": "Sin embargo, creo que es una cosa que puedo aportar a la comunidad",
+      "start_seconds": 25.92,
+      "end_seconds": 29.02
+    },
+    {
+      "timestamp": "00:29",
+      "text": "y ver cómo piensa un ingeniero a la hora de crear estos mini programas.",
+      "start_seconds": 29.02,
+      "end_seconds": 33.18
+    },
+    {
+      "timestamp": "00:33",
+      "text": "Este programa no está pensado para que escalen a millones de personas",
+      "start_seconds": 33.32,
+      "end_seconds": 36.36
+    },
+    {
+      "timestamp": "00:36",
+      "text": "simplemente es para uso personal.",
+      "start_seconds": 36.36,
+      "end_seconds": 37.84
+    },
+    {
+      "timestamp": "00:38",
+      "text": "Va a emplear diferentes patas que os puede servir para múltiples ocasiones.",
+      "start_seconds": 38.08,
+      "end_seconds": 43.2
+    },
+    {
+      "timestamp": "00:43",
+      "text": "Por ejemplo, transcribir reuniones y que me de insides,",
+      "start_seconds": 43.6,
+      "end_seconds": 46.94
+    },
+    {
+      "timestamp": "00:47",
+      "text": "el uso que le voy a dar yo que va a ser generar títulos de vídeos de YouTube.",
+      "start_seconds": 47.94,
+      "end_seconds": 52.6
+    },
+    {
+      "timestamp": "00:52",
+      "text": "A partir de un video grabado, es decir, yo grabo mi vídeo,",
+      "start_seconds": 52.98,
+      "end_seconds": 55.92
+    },
+    {
+      "timestamp": "00:56",
+      "text": "pero luego no sé qué título ponerle.",
+      "start_seconds": 56.08,
+      "end_seconds": 57.68
+    },
+    {
+      "timestamp": "00:58",
+      "text": "Entonces me va a generar el título, me va a generar la descripción,",
+      "start_seconds": 58.2,
+      "end_seconds": 61.22
+    },
+    {
+      "timestamp": "01:01",
+      "text": "me va a generar los highlights con el TimeStump,",
+      "start_seconds": 61.64,
+      "end_seconds": 65.4
+    },
+    {
+      "timestamp": "01:05",
+      "text": "el sartípico vídeo que vas a la descripción y puedes ver ahí en el minuto",
+      "start_seconds": 65.7,
+      "end_seconds": 70.1
+    },
+    {
+      "timestamp": "01:10",
+      "text": "1.47 se habla de esto en el 2.48 de tal.",
+      "start_seconds": 70.1,
+      "end_seconds": 73.36
+    },
+    {
+      "timestamp": "01:13",
+      "text": "Entonces eso para mí me va a solucionar una problemática que tengo",
+      "start_seconds": 73.74,
+      "end_seconds": 77.9
+    },
+    {
+      "timestamp": "01:17",
+      "text": "que es la de no saber que el título poner para que os guste,",
+      "start_seconds": 77.9,
+      "end_seconds": 82.5
+    },
+    {
+      "timestamp": "01:22",
+      "text": "os llame la atención, pues lo que hago es basarme en el vídeo,",
+      "start_seconds": 82.54,
+      "end_seconds": 85.74
+    },
+    {
+      "timestamp": "01:25",
+      "text": "aplicar inteligencia artificial y que me generes ese vídeo, ese título.",
+      "start_seconds": 85.74,
+      "end_seconds": 90.12
+    },
+    {
+      "timestamp": "01:30",
+      "text": "Como os decía, cuando vamos a subir un vídeo,",
+      "start_seconds": 90.52,
+      "end_seconds": 92.9
+    },
+    {
+      "timestamp": "01:33",
+      "text": "vemos aquí que nos pide el título, la descripción, la miniatura, etcétera.",
+      "start_seconds": 93.04,
+      "end_seconds": 97.3
+    },
+    {
+      "timestamp": "01:37",
+      "text": "Entonces, esta herramienta no es para crear vídeos,",
+      "start_seconds": 97.34,
+      "end_seconds": 100.08
+    },
+    {
+      "timestamp": "01:40",
+      "text": "sino una vez que has creado el vídeo, generar ese título y esa descripción.",
+      "start_seconds": 100.46,
+      "end_seconds": 104.0
+    },
+    {
+      "timestamp": "01:44",
+      "text": "Entonces, una vez que ya sabemos el problema, cómo pienso yo.",
+      "start_seconds": 104.26,
+      "end_seconds": 107.32
+    },
+    {
+      "timestamp": "01:47",
+      "text": "¿Qué queremos? Lo primero que necesitamos es,",
+      "start_seconds": 107.7,
+      "end_seconds": 110.42
+    },
+    {
+      "timestamp": "01:50",
+      "text": "necesitamos un vídeo.",
+      "start_seconds": 110.58,
+      "end_seconds": 112.16
+    },
+    {
+      "timestamp": "01:52",
+      "text": "Un vídeo ya grabado.",
+      "start_seconds": 112.38,
+      "end_seconds": 113.8
+    },
+    {
+      "timestamp": "01:53",
+      "text": "Entonces, la lógica detrás, lo que vamos a hacer es transcribir el vídeo,",
+      "start_seconds": 113.8,
+      "end_seconds": 118.12
+    },
+    {
+      "timestamp": "01:58",
+      "text": "es decir, pasarlo a texto con los time stamps.",
+      "start_seconds": 118.38,
+      "end_seconds": 122.52
+    },
+    {
+      "timestamp": "02:02",
+      "text": "Entonces, queremos que la salida sea, por ejemplo, 001 a 007 y que sea",
+      "start_seconds": 122.92,
+      "end_seconds": 130.38
+    },
+    {
+      "timestamp": "02:10",
+      "text": "hola bienvenidos a mi canal.",
+      "start_seconds": 130.38,
+      "end_seconds": 134.28
+    },
+    {
+      "timestamp": "02:14",
+      "text": "Estar la salida que yo espero de este módulo.",
+      "start_seconds": 134.72,
+      "end_seconds": 137.44
+    },
+    {
+      "timestamp": "02:17",
+      "text": "Me da igual sinceramente que sea así o que sea simplemente con el inicio",
+      "start_seconds": 137.76,
+      "end_seconds": 143.46
+    },
+    {
+      "timestamp": "02:23",
+      "text": "del fragmento, entonces, con eso supongo que el inicio del siguiente es el final del anterior.",
+      "start_seconds": 143.46,
+      "end_seconds": 149.66
+    },
+    {
+      "timestamp": "02:30",
+      "text": "En este vídeo, vamos a ver, etcétera.",
+      "start_seconds": 150.04,
+      "end_seconds": 154.82
+    },
+    {
+      "timestamp": "02:34",
+      "text": "Entonces, una vez que tengo esto, lo que vamos a hacer es pasar a un lm, esa información.",
+      "start_seconds": 154.86,
+      "end_seconds": 160.7
+    },
+    {
+      "timestamp": "02:41",
+      "text": "Todo en bruto, no voy a procesar nada.",
+      "start_seconds": 161.06,
+      "end_seconds": 163.64
+    },
+    {
+      "timestamp": "02:43",
+      "text": "Una vez que está esa información pasada a un lm, lo que vamos a hacer es sacar el título,",
+      "start_seconds": 163.96,
+      "end_seconds": 170.08
+    },
+    {
+      "timestamp": "02:50",
+      "text": "título sugerido del vídeo.",
+      "start_seconds": 170.28,
+      "end_seconds": 172.86
+    },
+    {
+      "timestamp": "02:54",
+      "text": "Descripción, vamos a meter, por ejemplo, también tax y mejores momentos.",
+      "start_seconds": 174.44,
+      "end_seconds": 179.24
+    },
+    {
+      "timestamp": "02:59",
+      "text": "Ahora yo creo que con esta herramienta, pues ya somos capaces de tener.",
+      "start_seconds": 179.46,
+      "end_seconds": 183.1
+    },
+    {
+      "timestamp": "03:03",
+      "text": "Y vamos a ir a una extra, porque ahora mismo las miniaturas las hago yo y también, pues,",
+      "start_seconds": 183.32,
+      "end_seconds": 189.24
+    },
+    {
+      "timestamp": "03:09",
+      "text": "para mí es un roll hacerlas.",
+      "start_seconds": 189.36,
+      "end_seconds": 190.46
+    },
+    {
+      "timestamp": "03:10",
+      "text": "Entonces, vamos a decir que me haga un prompt para generar las miniaturas con y a generativa.",
+      "start_seconds": 190.58,
+      "end_seconds": 196.9
+    },
+    {
+      "timestamp": "03:17",
+      "text": "Vale, pues, sabiendo esto, vamos a ir a nuestro cloud de code de confianza.",
+      "start_seconds": 197.2,
+      "end_seconds": 201.9
+    },
+    {
+      "timestamp": "03:21",
+      "text": "Ya estamos por aquí, he creado un archivo.m, donde he metido la piqui de Gemini,",
+      "start_seconds": 201.9,
+      "end_seconds": 208.3
+    },
+    {
+      "timestamp": "03:28",
+      "text": "porque esa transcripción la vamos a hacer con Gemini.",
+      "start_seconds": 208.62,
+      "end_seconds": 211.12
+    },
+    {
+      "timestamp": "03:31",
+      "text": "Lo ideal sería hacerlo en local para no gastar tokens, pero es que esta en barato y voy a hacer un vídeo a la semana,",
+      "start_seconds": 211.38,
+      "end_seconds": 218.5
+    },
+    {
+      "timestamp": "03:38",
+      "text": "dos vídeos a la semana que me vas a suponer céntimos.",
+      "start_seconds": 218.5,
+      "end_seconds": 220.9
+    },
+    {
+      "timestamp": "03:41",
+      "text": "De hecho, la píe ahora mismo de Gemini es gratis.",
+      "start_seconds": 221.14,
+      "end_seconds": 224.58
+    },
+    {
+      "timestamp": "03:44",
+      "text": "Entonces, me supone cero, pero es posible que en el futuro, pues esa pico está igual que la de OpenE.",
+      "start_seconds": 224.94,
+      "end_seconds": 230.86
+    },
+    {
+      "timestamp": "03:50",
+      "text": "Entonces, empezamos. Al igual que os enseñé en el vídeo anterior, a mí me gusta usar cloud con este comando,",
+      "start_seconds": 230.86,
+      "end_seconds": 237.74
+    },
+    {
+      "timestamp": "03:58",
+      "text": "siempre que sea para proyectos propio, para proyectos con empresas, con clientes o cosas que se van a mantener en el tiempo.",
+      "start_seconds": 238.28,
+      "end_seconds": 245.14
+    },
+    {
+      "timestamp": "04:05",
+      "text": "No, pero en este caso es una prueba rápida, donde quiero que me solucione este problema.",
+      "start_seconds": 245.62,
+      "end_seconds": 250.92
+    },
+    {
+      "timestamp": "04:11",
+      "text": "Ya lo hemos ejecutado y ahora vamos a poner nuestro prompt.",
+      "start_seconds": 251.3,
+      "end_seconds": 254.5
+    },
+    {
+      "timestamp": "04:14",
+      "text": "Vale, pues, vamos con nuestro prompt.",
+      "start_seconds": 254.84,
+      "end_seconds": 256.18
+    },
+    {
+      "timestamp": "04:16",
+      "text": "A mí, como sabéis, me gusta hacer los prompts en inglés, entonces hemos dicho,",
+      "start_seconds": 256.52,
+      "end_seconds": 260.06
+    },
+    {
+      "timestamp": "04:20",
+      "text": "quiero crear una suite de herramientas para mis vídeos de YouTube,",
+      "start_seconds": 260.06,
+      "end_seconds": 264.8
+    },
+    {
+      "timestamp": "04:25",
+      "text": "es la idea es que ahora mismo vamos a hacer solo esta, pero quiero evolucionarlo y que sea más capaz de crear diferentes tools para los vídeos.",
+      "start_seconds": 265.06,
+      "end_seconds": 274.02
+    },
+    {
+      "timestamp": "04:34",
+      "text": "Entonces, la principal que a mí me gusta trabajar en este stack es front-end-end React,",
+      "start_seconds": 274.32,
+      "end_seconds": 279.28
+    },
+    {
+      "timestamp": "04:39",
+      "text": "iba a que en empayton y usando fast-up.",
+      "start_seconds": 279.6,
+      "end_seconds": 281.84
+    },
+    {
+      "timestamp": "04:42",
+      "text": "Lo que quiero es añadir pequeñas herramientas a la herramienta principal, a la aplicación principal.",
+      "start_seconds": 282.2,
+      "end_seconds": 288.54
+    },
+    {
+      "timestamp": "04:48",
+      "text": "Entonces, dado un vídeo local, esto es importante, lo que vamos a hacer es transcribir el audio en español con los TimeStamps y que use Gemini.",
+      "start_seconds": 288.54,
+      "end_seconds": 297.58
+    },
+    {
+      "timestamp": "04:57",
+      "text": "Con el audio transcrito, lo que podemos hacer es sugerir el título del vídeo, sugerir la descripción,",
+      "start_seconds": 297.86,
+      "end_seconds": 303.52
+    },
+    {
+      "timestamp": "05:04",
+      "text": "sugerir un prompt para crear la miniatura y destacar los mejores momentos.",
+      "start_seconds": 304.12,
+      "end_seconds": 309.46
+    },
+    {
+      "timestamp": "05:09",
+      "text": "Entonces, con esto lo vamos a poner en modo planmode y ejecutamos.",
+      "start_seconds": 309.64,
+      "end_seconds": 314.02
+    },
+    {
+      "timestamp": "05:14",
+      "text": "Lo primero que ha hecho es navegar hacia la API de Gemini para coger la última información, lo cual me parece muy bueno.",
+      "start_seconds": 314.02,
+      "end_seconds": 322.56
+    },
+    {
+      "timestamp": "05:22",
+      "text": "Así que le vamos a dar a que sí.",
+      "start_seconds": 322.76,
+      "end_seconds": 324.18
+    },
+    {
+      "timestamp": "05:24",
+      "text": "Vale, ya terminado, y me ha generado aquí un plan, va que, en tama, main, config, services, routers...",
+      "start_seconds": 324.44,
+      "end_seconds": 330.12
+    },
+    {
+      "timestamp": "05:30",
+      "text": "Bueno, tiene buena pinta.",
+      "start_seconds": 330.12,
+      "end_seconds": 331.3
+    },
+    {
+      "timestamp": "05:32",
+      "text": "No le he dicho que ha clín code, ni domain driven development, pero bueno, más o menos me sirve.",
+      "start_seconds": 332.0,
+      "end_seconds": 340.36
+    },
+    {
+      "timestamp": "05:40",
+      "text": "Aquí tenemos los tres endpoints que va a utilizar, aceptar el vídeo, subir el vídeo, transcribirlo y sugerencias.",
+      "start_seconds": 340.36,
+      "end_seconds": 348.72
+    },
+    {
+      "timestamp": "05:49",
+      "text": "Vale, me parece bien, quizá esto se podría dividir en diferentes endpoints, pero bueno, vamos a hacerlo one shot y vamos allá.",
+      "start_seconds": 349.04,
+      "end_seconds": 357.02
+    },
+    {
+      "timestamp": "05:57",
+      "text": "Bueno, pues ya he terminado y ahora pregunta para examen, ¿qué me gusta hacer cuando termina?",
+      "start_seconds": 357.36,
+      "end_seconds": 363.44
+    },
+    {
+      "timestamp": "06:03",
+      "text": "Muy bien, el barra init, importantísimo, porque si no, primero eso es va a olvidar y segundo, es muy interesante que el tenga todo el contexto de la conversación que acaba de hacer.",
+      "start_seconds": 363.44,
+      "end_seconds": 373.86
+    },
+    {
+      "timestamp": "06:14",
+      "text": "Os recuerdo que el barra init, lo que hace es crear el archivo CloudMD tan importante para tener el contexto de qué hace este programa.",
+      "start_seconds": 374.16,
+      "end_seconds": 383.02
+    },
+    {
+      "timestamp": "06:23",
+      "text": "Lo siguiente que me gusta hacer es inicializarlo como repositorio, ver que aquí no hay nada malo.",
+      "start_seconds": 383.3,
+      "end_seconds": 389.7
+    },
+    {
+      "timestamp": "06:29",
+      "text": "Tenemos aquí un punto M, vamos a decir, crieita y tignor por punto M, and other files.",
+      "start_seconds": 389.7,
+      "end_seconds": 397.46
+    },
+    {
+      "timestamp": "06:37",
+      "text": "Esto es importante, porque no nos interesa que esté el punto M.",
+      "start_seconds": 397.72,
+      "end_seconds": 401.52
+    },
+    {
+      "timestamp": "06:41",
+      "text": "Aunque es una aplicación privada, pero nunca se sabe si esto lo voy a compartir con todo el mundo.",
+      "start_seconds": 401.76,
+      "end_seconds": 407.02
+    },
+    {
+      "timestamp": "06:47",
+      "text": "Que lo más probable es que sí, lo tendrías en la descripción de hecho, entonces es muy importante que no haya a Piquís, JARCO de HADAS ni historias.",
+      "start_seconds": 407.3,
+      "end_seconds": 415.16
+    },
+    {
+      "timestamp": "06:55",
+      "text": "Vale, perfecto, ya lo tenemos. Entonces a mí lo que me gusta hacer ahora es probarlo, pues ran de A, perfecto, al terminado.",
+      "start_seconds": 415.16,
+      "end_seconds": 422.92
+    },
+    {
+      "timestamp": "07:03",
+      "text": "Vamos a abrir el navegador. Bien, tiene una pinta, arrastrar tu vídeo aquí, subir tu vídeo, pues vamos a probarlo.",
+      "start_seconds": 423.3,
+      "end_seconds": 430.74
+    },
+    {
+      "timestamp": "07:11",
+      "text": "Vamos a probar con el último vídeo, tiene un giga con 26. Y empezamos.",
+      "start_seconds": 431.04,
+      "end_seconds": 436.1
+    },
+    {
+      "timestamp": "07:16",
+      "text": "Problemía, archivo muy grande. A mí me interesa que los archivos grandes también lo haga.",
+      "start_seconds": 436.1,
+      "end_seconds": 441.34
+    },
+    {
+      "timestamp": "07:21",
+      "text": "Entonces vamos a decir que divide a 3 o divide a nx partes el vídeo.",
+      "start_seconds": 441.66,
+      "end_seconds": 447.92
+    },
+    {
+      "timestamp": "07:28",
+      "text": "Lo estoy preguntando si el problema de los 500 M es por LAPI o es por que nosotros queremos.",
+      "start_seconds": 448.3,
+      "end_seconds": 454.38
+    },
+    {
+      "timestamp": "07:34",
+      "text": "Entonces vamos a ver cuál es el límite de LAPI y lo preve.",
+      "start_seconds": 454.84,
+      "end_seconds": 457.56
+    },
+    {
+      "timestamp": "07:37",
+      "text": "Bueno, pues podemos ver que lo está cambiando a 5 gigas porque el problema no era de LAPI sino del propio Business,",
+      "start_seconds": 457.56,
+      "end_seconds": 465.68
+    },
+    {
+      "timestamp": "07:46",
+      "text": "el propio cloud ha decidido 500 M, máximo lo cual es bastante razonable.",
+      "start_seconds": 466.02,
+      "end_seconds": 471.76
+    },
+    {
+      "timestamp": "07:52",
+      "text": "Pues actualizamos y vamos a probar. Vamos con nuestro vídeo de 1,26 gigas, procesando.",
+      "start_seconds": 472.04,
+      "end_seconds": 477.44
+    },
+    {
+      "timestamp": "07:57",
+      "text": "Ya sabéis que a mí me gusta abrir la consola de comandos, por sacaso.",
+      "start_seconds": 477.82,
+      "end_seconds": 481.4
+    },
+    {
+      "timestamp": "08:01",
+      "text": "Bueno, aquí de momento no aparece nada y vamos a abrir el background.",
+      "start_seconds": 481.4,
+      "end_seconds": 485.68
+    },
+    {
+      "timestamp": "08:06",
+      "text": "En el momento no vemos ningún problema. Quien el background, en el primer run-deb, bien, y este info.",
+      "start_seconds": 486.06,
+      "end_seconds": 494.14
+    },
+    {
+      "timestamp": "08:15",
+      "text": "Vale, ha terminado y nos ha sacado aquí un error. Vamos a tratar de solucionarlo.",
+      "start_seconds": 495.16,
+      "end_seconds": 499.5
+    },
+    {
+      "timestamp": "08:19",
+      "text": "Que dice, battery-spones. Parece tema del LAPI pero bueno, vamos a copiarse lo, aquí.",
+      "start_seconds": 499.84,
+      "end_seconds": 504.42
+    },
+    {
+      "timestamp": "08:24",
+      "text": "Y también decopiamos el mensaje que tenemos en el front.",
+      "start_seconds": 504.8,
+      "end_seconds": 507.8
+    },
+    {
+      "timestamp": "08:27",
+      "text": "Vale, el problema era el nombre del archivo que no puede ser más largo de 60 caracteres y nosot de 40 caracteres y nosotros le enviamos el UID.",
+      "start_seconds": 507.8,
+      "end_seconds": 517.88
+    },
+    {
+      "timestamp": "08:38",
+      "text": "Vale, no pasa nada. Perfecto, terminado. Volvemos a ejecutarlo y hasta procesando el vídeo.",
+      "start_seconds": 518.2,
+      "end_seconds": 524.1
+    },
+    {
+      "timestamp": "08:44",
+      "text": "Bueno, pues después de aproximadamente 5 minutos nos ha devuelto aquí un JSON de todo la transcripción pero como podemos ver,",
+      "start_seconds": 524.5,
+      "end_seconds": 534.02
+    },
+    {
+      "timestamp": "08:54",
+      "text": "no se puede apreciar bien, ¿por qué? Porque al no utilizar salida estructurada nos ha devuelto este...",
+      "start_seconds": 534.02,
+      "end_seconds": 542.02
+    },
+    {
+      "timestamp": "09:02",
+      "text": "No sé cómo se llama este tipo de estructura pero como las triples comidas y JSON, por lo que tenemos que parsear el contenido que viene después.",
+      "start_seconds": 542.02,
+      "end_seconds": 551.64
+    },
+    {
+      "timestamp": "09:12",
+      "text": "Así que vamos a hacer un pantallazo para que vea cuál es el problema.",
+      "start_seconds": 552.18,
+      "end_seconds": 557.3
+    },
+    {
+      "timestamp": "09:17",
+      "text": "Der is a book, Gemini is returning y le ponemos aquí los tres type of ticks JSON, and is not being shown properly.",
+      "start_seconds": 557.3,
+      "end_seconds": 567.66
+    },
+    {
+      "timestamp": "09:27",
+      "text": "Y le paso el pantallazo para que vea lo que pasa. Como bien sabéis, en cloudes se pueden meter imagen.",
+      "start_seconds": 567.92,
+      "end_seconds": 573.74
+    },
+    {
+      "timestamp": "09:33",
+      "text": "Vale, ya lo ha resuelto así que vamos a volver a llamar a nuestra aplicación.",
+      "start_seconds": 573.98,
+      "end_seconds": 578.16
+    },
+    {
+      "timestamp": "09:38",
+      "text": "Bueno, pues ya he terminado, ha sacado la transcripción del vídeo con los timestams que le dijimos y aquí podemos ver el título sugerido",
+      "start_seconds": 578.64,
+      "end_seconds": 586.56
+    },
+    {
+      "timestamp": "09:46",
+      "text": "del vídeo anterior, la descripción incluso un prompt. Ingeniero con gafas explicando, supongo que tendrá incluso multaimodalidad y me ha visto, supongo.",
+      "start_seconds": 586.56,
+      "end_seconds": 599.46
+    },
+    {
+      "timestamp": "09:59",
+      "text": "Pero bueno, aquí vemos los capítulos, el vídeo es un poquito más largo por lo que me da la sensación que no lo he hecho entero.",
+      "start_seconds": 599.76,
+      "end_seconds": 608.22
+    },
+    {
+      "timestamp": "10:08",
+      "text": "Vale, aquí veo que se acortan el minuto 6, pero bueno, sería encadenar llamadas y darle un refinamiento.",
+      "start_seconds": 608.22,
+      "end_seconds": 615.56
+    },
+    {
+      "timestamp": "10:15",
+      "text": "Pero a mí con esto ya me sirve. Yo aquí ya tengo un título sugerido que además me gusta y una descripción.",
+      "start_seconds": 615.74,
+      "end_seconds": 622.3
+    },
+    {
+      "timestamp": "10:22",
+      "text": "Así que nada, esta aplicación ahora mismo como comentamos en otros vídeos es un sás.",
+      "start_seconds": 622.74,
+      "end_seconds": 631.1
+    },
+    {
+      "timestamp": "10:31",
+      "text": "Hay gente que podría pagar por esto, habría que mejorar algunos aspectos como que solo hagas 6 minutos.",
+      "start_seconds": 631.38,
+      "end_seconds": 637.04
+    },
+    {
+      "timestamp": "10:37",
+      "text": "Eso habría que ver por qué. Pero aún así, tú simplemente podrías publicarlo en internet y que por una suscripción mensual o un pago por uso muy pequeño,",
+      "start_seconds": 637.04,
+      "end_seconds": 647.82
+    },
+    {
+      "timestamp": "10:48",
+      "text": "te saque esta transcripción más el título. Y ahora mismo quiero recordar que estoy pagando 0 euros de app de Google.",
+      "start_seconds": 648.2,
+      "end_seconds": 656.24
+    },
+    {
+      "timestamp": "10:56",
+      "text": "Por supuesto, tiene límites, pero bueno, es una manera de empezar cualquier sás. Por eso mismo, en el vídeo anterior vimos, ¿por qué no invierto ensas?",
+      "start_seconds": 656.56,
+      "end_seconds": 665.3
+    },
+    {
+      "timestamp": "11:05",
+      "text": "Porque yo mismo me lo puedo hacer. El siguiente paso, ¿cuál podría ser? Pues este prompt, conectarlo con nano-banana y que me genere automáticamente la miniatura.",
+      "start_seconds": 665.3,
+      "end_seconds": 675.2
+    },
+    {
+      "timestamp": "11:15",
+      "text": "Otro sás a tomar por culo. Entonces, con esto, espero que os haya abierto un poquito la mente. Os haya enseñado cómo yo me creo mis propios sás, mis propios programitas.",
+      "start_seconds": 675.52,
+      "end_seconds": 687.18
+    },
+    {
+      "timestamp": "11:27",
+      "text": "Y por eso no pago servicios externos. Os dejo la descripción del vídeo, el código para que si queréis lo podáis replicar y nos vemos en siguientes vídeos.",
+      "start_seconds": 687.18,
+      "end_seconds": 696.8
+    },
+    {
+      "timestamp": "11:37",
+      "text": "Un saludo.",
+      "start_seconds": 697.3,
+      "end_seconds": 697.76
+    }
+  ],
+  "suggestions": {
+    "title": "IA crea títulos y descripciones para YouTube ¡en minutos!",
+    "titles": [],
+    "description": "¿Cansado de pasar horas pensando en títulos y descripciones para tus videos de YouTube? En este video, Javi, ingeniero especializado en inteligencia artificial, te muestra cómo crear un programa en minutos que utiliza IA para generar títulos atractivos, descripciones optimizadas para SEO, prompts para miniaturas llamativas e incluso los mejores momentos con timestamps para facilitar la navegación. Aprende cómo un ingeniero crea mini programas para uso personal y cómo puedes aplicarlo a tu canal de YouTube. Descubre cómo transcribir videos, utilizar Gemini y Fast API para automatizar tu contenido y optimizar tu tiempo. ¡No te pierdas esta guía práctica para potenciar tu canal con inteligencia artificial!",
+    "thumbnail_prompt": "Ingeniero con gafas sonriendo frente a una pantalla de código con el logo de YouTube y un icono de inteligencia artificial. Colores vibrantes, texto llamativo que diga \"IA para YouTube\" o \"Títulos IA\". Composición que transmita innovación y facilidad de uso.",
+    "highlights": [
+      {
+        "timestamp": "00:14",
+        "text": "Creando programa para generar títulos y descripciones de YouTube.",
+        "start_seconds": 14.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "00:47",
+        "text": "Usando IA para generar títulos, descripciones y timestamps.",
+        "start_seconds": 47.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:53",
+        "text": "Transcribiendo el video y pasándolo a un LLM.",
+        "start_seconds": 113.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "03:21",
+        "text": "Usando la API de Gemini para la transcripción.",
+        "start_seconds": 201.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "09:38",
+        "text": "Resultado: título sugerido, descripción y prompt para miniatura generados por IA.",
+        "start_seconds": 578.0,
+        "end_seconds": null
+      }
+    ]
+  }
+}

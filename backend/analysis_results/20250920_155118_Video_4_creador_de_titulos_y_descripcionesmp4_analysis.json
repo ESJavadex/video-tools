@@ -1,0 +1,111 @@
+{
+  "original_filename": "Video 4 creador de titulos y descripciones.mp4",
+  "analysis_id": "6fd4f6be-3688-4b67-a333-71097f3d467e",
+  "processed_at": "2025-09-20T13:51:18.482954",
+  "duration_seconds": 267.0,
+  "transcription": [
+    {
+      "timestamp": "00:00",
+      "text": "Buenas a todos, soy Javi, ingeniero especializado en Inteligencia artificial, y hoy vamos a ver a cómo crear un SAS desde cero.",
+      "start_seconds": 0.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:08",
+      "text": "En mis ratos libres, aparte de programar, eh soy inversor. Ahora mismo, tal como está el panorama, cualquier persona con unos mínimos conocimientos de informática, ya no hablo de programación, sino de informática, sería capaz de replicar cualquier SAS para uso personal no es lo mismo que replicar un SAS para millones de personas.",
+      "start_seconds": 8.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:24",
+      "text": "Ojíto esto que digo, porque replicar un SAS para uso personal no es lo mismo que replicar un SAS para millones de personas. Como bien sabemos, realmente el software, lo complicado hoy en día, que tú puedes crear un programa lenguaje natural, no es el programa, sino es la escalabilidad, es la seguridad y el mantenimiento de ese programa.",
+      "start_seconds": 24.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:43",
+      "text": "Si no es la escalabilidad, es la seguridad y es el mantenimiento de ese programa. Ahora mismo, para uso personal, esos tres temas nos da muy igual.",
+      "start_seconds": 43.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "00:54",
+      "text": "Si nosotros vamos a usar un programa que va a estar alojado en nuestro ordenador en local, que lo vamos a utilizar solo nosotros, que lo va a mantener Cloud e code y que nos da igual que haya bugs, ahora mismo cualquier SAS, prácticamente, el vamos a decir, por no decir cualquier, vamos a decir el 99% de los SAS que puedas imaginar, los podemos hacer en casa.",
+      "start_seconds": 54.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "01:22",
+      "text": "Y no hablo de VO, Lobo ball y estos SAS que te puedes replicar una interfaz bonita, Hablo de SAS end to end. Cuando hice esta publicación, servidores en streaming que comparten películas con sus amigos o incluso ya partidos de fútbol de manera ilegal y no son un Netflix ni ni compañías de streaming.",
+      "start_seconds": 82.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "01:54",
+      "text": "O sea, la complejidad, es lo que os quiero decir y es un poco también opinión personal porque yo soy inversor, a mí en cuanto me llegan proyectos que son SAS, yo directamente los rechazo. Y yo sé que el emprendedor tiene un montón de ganas, que es el mejor y que hay unicornios que son SAS, pero hoy en día, en mi opinión, los SAS están por supuesto ahora mismo un SAS no tiene valor.",
+      "start_seconds": 114.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "02:17",
+      "text": "O sea, yo estaba pagando por cada llamada de vídeos de una hora que a lo mejor, no sé, son como mucho. ¿Cuánto se paga el token?",
+      "start_seconds": 137.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "02:47",
+      "text": "¿Cuánto estamos hablando de nada, o sea, ni 15 euros. Si me dice un programa se lo lleva y yo si sigo?",
+      "start_seconds": 167.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "03:05",
+      "text": "Ahora no, a por a y queda gusta eso la lógica es lo complicado pero en un minuto me o sea hago tres ya voy a hacer pues vale euros y Pues yo ya tengo de cero Pues el ingeniero tiene aquí está ya yo voy a empezar, Bueno es que son se se ahora que eso son para es para voy pues ahora con a por pues es muy ahora mismo me va a hacer a a y eso y Pues por me lo yo y y con eso ha hecho no me de el En me de la que por",
+      "start_seconds": 185.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "03:43",
+      "text": "Lo que pasa que el coste de alojar todo eso, la latencia, no merece la pena, entonces pago, pero porque no puedo replicarlo, entendés? Entonces, con esto quiero decir que, por ejemplo, yo pagaba un servicio que de videos largos, me creaba los shorts para luego subir en TikTok y todo eso, y yo solo estaba usando durante muchos meses. Para qué voy a pagar por eso si lo puedo replicar?",
+      "start_seconds": 223.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "04:03",
+      "text": "O sea, una tarde me llevó a hacerlo. ¿Cómo se hace eso? O sea, la lógica es lo complicado, pero en un minuto me di cuenta.",
+      "start_seconds": 243.0,
+      "end_seconds": null
+    },
+    {
+      "timestamp": "04:27",
+      "text": "Luego ya es pues hacer un resize y poner unos subtítulos. Pues ya está, pues eso vale 20 o 30 al mes. En valor me igual. Y ahora que aplicación y voy a empezar en. De desde hace varios meses en Instagram y en anuncio ahí la gente los comentarios eh puso como retos de entonces. Entonces, mi recomendación es que en todos los programas para las un poco y no sé en una de a y y luego por que",
+      "start_seconds": 267.0,
+      "end_seconds": null
+    }
+  ],
+  "suggestions": {
+    "title": "Cómo crear un SaaS desde cero y por qué NO deberías invertir",
+    "description": "Descubre cómo replicar un SaaS para uso personal y por qué, en la opinión de un ingeniero especializado en IA e inversor, crear un SaaS desde cero podría no ser una inversión rentable. Analizamos los costes ocultos, temas de seguridad y estrategias para un emprendimiento exitoso en el mundo de la inteligencia artificial.",
+    "thumbnail_prompt": "Ingeniero con gafas explicando apasionadamente con gestos amplios frente a un fondo futurista azul y dorado, resaltando el título 'SaaS: ¿Éxito o Fracaso?' con iconos de gráficas y advertencias",
+    "highlights": [
+      {
+        "timestamp": "00:24",
+        "text": "Replicar un SaaS para uso personal vs. para millones de usuarios",
+        "start_seconds": 24.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "01:37",
+        "text": "La verdadera dificultad al crear un SaaS: escalabilidad, seguridad y mantenimiento",
+        "start_seconds": 97.0,
+        "end_seconds": null
+      },
+      {
+        "timestamp": "02:26",
+        "text": "Por qué los SaaS están 'muertos' en la opinión del inversor",
+        "start_seconds": 146.0,
+        "end_seconds": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-multipart
+google-generativeai
+python-dotenv
+pydantic
+pydantic-settings
+aiofiles
+cors
