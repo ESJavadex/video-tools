@@ -1,0 +1,25 @@
+{
+  "name": "video-tools",
+  "version": "1.0.0",
+  "description": "[![JavadexAI YouTube](https://img.shields.io/badge/YouTube-JavadexAI-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@JavadexAI) [![Únete a la Comunidad](https://img.shields.io/badge/Comunidad-La%20Escuela%20de%20IA-blue?style=for-the-badge)](https://www.skool.com/la-escuela-de-ia-9955) [![Tutorial Completo](https://img.shields.io/badge/Tutorial-Ver%20Video-green?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=v5Dh_zwxu7E)",
+  "main": "take-screenshots.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ESJavadex/video-tools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ESJavadex/video-tools/issues"
+  },
+  "homepage": "https://github.com/ESJavadex/video-tools#readme",
+  "dependencies": {
+    "@playwright/test": "^1.55.0",
+    "playwright": "^1.55.0"
+  }
+}

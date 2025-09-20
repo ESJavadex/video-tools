@@ -46,6 +46,25 @@ Suite completa de herramientas para **optimizar tu contenido de YouTube** usando
 
 ---
 
+## 📸 Capturas de Pantalla
+
+### 🎬 **Interfaz de Subida**
+<img src="screenshots/01-upload-interface.png" alt="Interfaz de subida de videos" width="800"/>
+
+*Arrastra y suelta tus videos para comenzar el análisis automático con IA*
+
+### 📊 **Resultados del Análisis**
+<img src="screenshots/02-results-interface.png" alt="Resultados completos del análisis" width="800"/>
+
+*Transcripción completa, títulos optimizados, descripciones SEO y capítulos distribuidos por todo el video*
+
+### 🔄 **Regeneración de Sugerencias**
+<img src="screenshots/03-regeneration-modal.png" alt="Modal de regeneración de sugerencias" width="800"/>
+
+*Genera 4 opciones de títulos diferentes con instrucciones personalizadas*
+
+---
+
 ## 🛠️ Instalación Rápida
 
 ### **Requisitos**
