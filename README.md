@@ -16,7 +16,7 @@ Suite completa de herramientas para **optimizar tu contenido de YouTube** usando
 👉 **[Ver el tutorial paso a paso](https://www.youtube.com/watch?v=v5Dh_zwxu7E)** en el canal de [JavadexAI](https://www.youtube.com/@JavadexAI)
 
 ### 🎓 **Únete a la Comunidad**
-🔥 **[La Escuela de IA](https://www.skool.com/la-escuela-de-ia-9955)** - Aprende IA práctica con más de 2000+ estudiantes
+🔥 **[La Escuela de IA](https://www.skool.com/la-escuela-de-ia-9955)** - Aprende IA práctica con proyectos reales
 
 ---
 
@@ -181,7 +181,7 @@ video-tools/
 
 ### 🎓 **Comunidad**
 - **La Escuela de IA**: https://www.skool.com/la-escuela-de-ia-9955
-- **2000+ estudiantes** aprendiendo IA
+- **Comunidad creciente** de desarrolladores IA
 - **Proyectos prácticos** como este
 - **Soporte de la comunidad**
 
