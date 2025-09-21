@@ -142,6 +142,10 @@ class GeminiService:
         - Genera contenido listo para copiar/pegar en YouTube
         - Si el video es largo (>10 min), crea MUCHOS highlights (15-30 mínimo)
         - Distribuye highlights por TODO el video, no solo el inicio
+        - ESPACIADO CRÍTICO: Mínimo 1 minuto entre highlights, pero sigue el flujo natural del contenido
+        - Ejemplo: 00:00, 01:43, 02:50, 06:05...
+        - NO pongas highlights consecutivos como 00:30, 00:45 - respeta mínimo 1 minuto
+        - El timing debe reflejar cambios reales de tema, no intervalos artificiales
         - Cada highlight debe ser único y representativo
         - Hazlo personal para Javi
 
@@ -151,8 +155,15 @@ class GeminiService:
             "description": "Descripción SEO optimizada 150-200 palabras con palabras clave",
             "thumbnail_prompt": "Prompt detallado para thumbnail llamativo con elementos visuales específicos",
             "highlights": [
-                {{"timestamp": "MM:SS", "text": "Momento destacado específico"}},
-                {{"timestamp": "MM:SS", "text": "Otro momento importante"}}
+                {{"timestamp": "00:00", "text": "Introducción: el problema de los títulos"}},
+                {{"timestamp": "01:43", "text": "Idea: usar IA para transcribir y generar títulos"}},
+                {{"timestamp": "03:15", "text": "Cómo funciona el flujo (transcripción + LLM)"}},
+                {{"timestamp": "05:05", "text": "Qué genera: títulos, descripciones, tags y highlights"}},
+                {{"timestamp": "07:37", "text": "Stack elegido (React + FastAPI + Gemini)"}},
+                {{"timestamp": "09:11", "text": "Problemas con archivos grandes y solución"}},
+                {{"timestamp": "11:38", "text": "Resultados de la transcripción y sugerencias"}},
+                {{"timestamp": "13:17", "text": "Reflexión: convertirlo en un SaaS"}},
+                {{"timestamp": "15:30", "text": "Conclusión y próximos pasos"}}
             ]
         }}
 
