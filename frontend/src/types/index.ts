@@ -5,12 +5,19 @@ export interface TranscriptionSegment {
   end_seconds?: number;
 }
 
+export interface ActionItem {
+  action: string;
+  context: string;
+  priority: string;
+}
+
 export interface VideoSuggestions {
   title: string;
   titles?: string[]; // Multiple title options
   description: string;
   thumbnail_prompt: string;
   highlights: TranscriptionSegment[];
+  action_items?: ActionItem[];
 }
 
 export interface VideoTranscriptionResponse {

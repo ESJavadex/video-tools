@@ -8,12 +8,18 @@ class TranscriptionSegment(BaseModel):
     start_seconds: float
     end_seconds: Optional[float] = None
 
+class ActionItem(BaseModel):
+    action: str
+    context: str
+    priority: str  # "alta", "media", "baja"
+
 class VideoSuggestions(BaseModel):
     title: str
     titles: List[str] = []  # Multiple title options
     description: str
     thumbnail_prompt: str
     highlights: List[TranscriptionSegment]
+    action_items: List[ActionItem] = []
 
 class VideoTranscriptionRequest(BaseModel):
     file_path: str

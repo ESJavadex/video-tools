@@ -78,12 +78,25 @@ class VideoProcessor:
                 start_seconds=self._parse_timestamp(highlight["timestamp"])
             ))
 
+        # Parse action items from suggestions
+        action_items = []
+        for item in suggestions_result.get("action_items", []):
+            from app.models.video import ActionItem
+            action_items.append(ActionItem(
+                action=item.get("action", ""),
+                context=item.get("context", ""),
+                priority=item.get("priority", "media")
+            ))
+
+        print(f"DEBUG: Parsed {len(action_items)} action items from suggestions")
+
         # Create suggestions object
         suggestions = VideoSuggestions(
             title=suggestions_result.get("title", ""),
             description=suggestions_result.get("description", ""),
             thumbnail_prompt=suggestions_result.get("thumbnail_prompt", ""),
-            highlights=highlights
+            highlights=highlights,
+            action_items=action_items
         )
 
         # Use duration from Whisper

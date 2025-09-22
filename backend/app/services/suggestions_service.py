@@ -49,6 +49,18 @@ class SuggestionsService:
                 {{"timestamp": "11:38", "text": "Resultados de la transcripción y sugerencias"}},
                 {{"timestamp": "13:17", "text": "Reflexión: convertirlo en un SaaS"}},
                 {{"timestamp": "15:30", "text": "Conclusión y próximos pasos"}}
+            ],
+            "action_items": [
+                {{
+                    "action": "Compartir enlace del repositorio",
+                    "context": "Prometí compartir el código en GitHub",
+                    "priority": "alta"
+                }},
+                {{
+                    "action": "Enviar presentación por email",
+                    "context": "Mencioné que enviaría las diapositivas después de la reunión",
+                    "priority": "media"
+                }}
             ]
         }}
 
@@ -64,10 +76,28 @@ class SuggestionsService:
         - El timing debe reflejar cambios reales de tema, no intervalos artificiales
         - NO omitas secciones importantes del video
         - La descripción debe ser SEO optimizada y atractiva
+
+        PARA ACTION ITEMS:
+        - Identifica TODAS las acciones y compromisos mencionados, incluyendo:
+          * Acciones futuras: "voy a", "vamos a", "haré", "haremos", "te voy a", "les voy a"
+          * Promesas: "te vas a llevar", "tendrás", "recibirás", "obtendrás"
+          * Compromisos: "compartir", "enviar", "mandar", "subir", "publicar", "dar", "proporcionar"
+          * Entregas: "documentación", "flujos", "tutoriales", "materiales", "recursos"
+        - Ejemplos de frases a detectar:
+          * "te vas a llevar todos los flujos" → Acción: Proporcionar flujos
+          * "vamos a ir elaborando documentación" → Acción: Crear y compartir documentación
+          * "todo esto lo vas a tener disponible" → Acción: Dar acceso a materiales
+          * "vamos a establecer contactos" → Acción: Facilitar networking
+        - Si no encuentras acciones explícitas, busca compromisos implícitos
+        - Asigna prioridad: alta (muy importante), media (normal), baja (mencionado de pasada)
+        - El contexto debe incluir la cita exacta del video cuando sea posible
         """
 
         print(f"DEBUG: Generating suggestions with analysis ID: {analysis_id}")
+        print(f"DEBUG: Looking for action items in transcription...")
         response = self.model.generate_content(prompt)
+        print(f"DEBUG: Raw Gemini response (first 500 chars): {response.text[:500]}")
+        print(f"DEBUG: Checking if 'action_items' in response: {'action_items' in response.text}")
 
         return self._parse_response(response.text)
 
@@ -166,6 +196,22 @@ class SuggestionsService:
 
             result = json.loads(json_str)
             print(f"DEBUG: Successfully parsed suggestions")
+            print(f"DEBUG: Action items found: {result.get('action_items', [])}")
+
+            # Ensure action_items key exists even if empty
+            if 'action_items' not in result:
+                result['action_items'] = []
+                print(f"DEBUG: No action_items in response, adding empty list")
+
+            # DEBUG: If no action items found, add a demo one for testing UI
+            if len(result.get('action_items', [])) == 0:
+                print("DEBUG: No action items detected - adding demo item for UI testing")
+                result['action_items'] = [{
+                    "action": "Revisar el contenido procesado",
+                    "context": "DEBUG: No se detectaron acciones específicas en este video. Este es un item de demostración.",
+                    "priority": "baja"
+                }]
+
             return result
 
         except Exception as e:
@@ -181,5 +227,6 @@ class SuggestionsService:
                 ] if "titles" in response_text.lower() else None,
                 "description": "Descripción generada automáticamente basada en el contenido del video.",
                 "thumbnail_prompt": "Thumbnail atractivo para video de YouTube",
-                "highlights": []
+                "highlights": [],
+                "action_items": []
             }

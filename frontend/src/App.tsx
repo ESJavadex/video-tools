@@ -3,6 +3,7 @@ import { Youtube, AlertCircle, CheckCircle } from 'lucide-react';
 import VideoUploader from './components/VideoUploader';
 import TranscriptionViewer from './components/TranscriptionViewer';
 import SuggestionsPanel from './components/SuggestionsPanel';
+import ActionItemsPanel from './components/ActionItemsPanel';
 import { videoApi } from './services/api';
 import { VideoTranscriptionResponse } from './types';
 
@@ -128,6 +129,11 @@ function App() {
                   suggestions={result.suggestions}
                   transcription={result.transcription}
                 />
+
+                {/* Action Items */}
+                {result.suggestions?.action_items && result.suggestions.action_items.length > 0 && (
+                  <ActionItemsPanel actionItems={result.suggestions.action_items} />
+                )}
 
                 {/* Metadata */}
                 <div className="bg-white rounded-lg shadow p-6">
