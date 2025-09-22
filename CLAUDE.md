@@ -48,14 +48,15 @@ This is a full-stack YouTube video processing application with two main componen
   - `VideoUploader.tsx` - Drag-and-drop file upload with validation
   - `TranscriptionViewer.tsx` - Display timestamped transcription
   - `SuggestionsPanel.tsx` - Show AI-generated content suggestions
+  - `ActionItemsPanel.tsx` - Display detected action items with priority and copy features
 
 ### Data Flow
 1. Frontend uploads video via multipart form data to `/api/videos/process`
 2. Backend validates file (size: 5GB max, formats: MP4/AVI/MOV/MKV/WebM/MPEG)
 3. Video uploaded to Gemini File API for processing
-4. Gemini processes video and returns JSON with transcription + suggestions
-5. Backend parses and structures response into typed models
-6. Frontend displays results with copy-to-clipboard functionality
+4. Gemini processes video and returns JSON with transcription + suggestions + action items
+5. Backend parses and structures response into typed models (including ActionItem model)
+6. Frontend displays results with copy-to-clipboard functionality and action items panel
 
 ### Environment Configuration
 - Backend requires `GEMINI_API_KEY` in `.env` file
@@ -67,6 +68,17 @@ This is a full-stack YouTube video processing application with two main componen
 - **Gemini Processing**: Videos are uploaded to Gemini File API, then processed with custom prompt for Spanish transcription
 - **Error Handling**: API errors propagated to frontend with user-friendly messages
 - **State Management**: React state for upload progress, processing status, and results display
+
+### Action Items Feature
+- **Automatic extraction** of commitments and future actions from video transcriptions
+- **Detection patterns** include:
+  - Future actions: "voy a", "vamos a", "haré", "haremos"
+  - Promises: "te vas a llevar", "tendrás", "recibirás"
+  - Commitments: "compartir", "enviar", "mandar", "subir"
+- **Priority levels**: alta (high), media (medium), baja (low)
+- **ActionItem model** with fields: action, context, priority
+- **Frontend panel** displays items with color-coded priorities and copy functionality
+- **Fallback mechanism** includes demo item if no real actions detected (for testing)
 
 ### Production Considerations
 - Videos are temporarily stored in `uploads/` directory and cleaned up after processing

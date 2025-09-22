@@ -44,6 +44,12 @@ Suite completa de herramientas para **optimizar tu contenido de YouTube** usando
 - Archivos JSON con timestamp
 - Historial completo de procesamiento
 
+### ✅ **Action Items (Nuevo)**
+- **Detección automática** de compromisos y tareas mencionadas
+- **Priorización** (alta/media/baja) según importancia
+- **Contexto incluido** de dónde se mencionó cada acción
+- **Copia individual o total** para gestión de tareas
+
 ---
 
 ## 📸 Capturas de Pantalla
@@ -62,6 +68,11 @@ Suite completa de herramientas para **optimizar tu contenido de YouTube** usando
 <img src="screenshots/03-regeneration-modal.png" alt="Modal de regeneración de sugerencias" width="800"/>
 
 *Genera 4 opciones de títulos diferentes con instrucciones personalizadas*
+
+### ✅ **Panel de Action Items**
+<img src="screenshots/04-action-items-panel.png" alt="Panel de Action Items" width="800"/>
+
+*Detecta automáticamente compromisos y tareas futuras mencionadas en el video, con priorización y contexto*
 
 ---
 
