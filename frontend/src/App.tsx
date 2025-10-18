@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Youtube, AlertCircle, CheckCircle } from 'lucide-react';
 import VideoUploader from './components/VideoUploader';
 import TranscriptionViewer from './components/TranscriptionViewer';

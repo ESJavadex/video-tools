@@ -31,9 +31,14 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  const formatHighlights = () => {
+  const formatYouTubeChapters = () => {
     return suggestions.highlights
-      .map(h => `${h.timestamp} - ${h.text}`)
+      .map(h => {
+        // Convert timestamp to YouTube format (remove leading zeros)
+        // "00:12" -> "0:12", "01:23" -> "1:23", "00:00:45" -> "0:00:45"
+        const cleanTimestamp = h.timestamp.replace(/^0(\d):/, '$1:').replace(/^00:00:/, '0:00:');
+        return `${cleanTimestamp} ${h.text}`;
+      })
       .join('\n');
   };
 
@@ -250,19 +255,19 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
           </div>
         </div>
 
-        {/* Highlights/Chapters */}
+        {/* YouTube Chapters - Formatted for direct paste */}
         {suggestions.highlights && suggestions.highlights.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 flex items-center">
                 <List className="w-4 h-4 mr-1" />
-                Capítulos / Momentos destacados
+                Capítulos de YouTube
               </label>
               <button
-                onClick={() => copyToClipboard(formatHighlights(), 'highlights')}
-                className="text-sm text-blue-600 hover:text-blue-700 flex items-center"
+                onClick={() => copyToClipboard(formatYouTubeChapters(), 'youtube-chapters')}
+                className="text-sm text-white bg-red-600 hover:bg-red-700 flex items-center px-3 py-1.5 rounded"
               >
-                {copiedField === 'highlights' ? (
+                {copiedField === 'youtube-chapters' ? (
                   <>
                     <Check className="w-3 h-3 mr-1" />
                     Copiado
@@ -270,10 +275,30 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
                 ) : (
                   <>
                     <Copy className="w-3 h-3 mr-1" />
-                    Copiar
+                    Copiar para YouTube
                   </>
                 )}
               </button>
+            </div>
+            <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+              <pre className="text-sm text-gray-800 font-mono whitespace-pre-wrap">
+                {formatYouTubeChapters()}
+              </pre>
+            </div>
+            <p className="text-xs text-gray-500 italic">
+              ✨ Formato listo para pegar en la descripción de YouTube. Los capítulos aparecerán automáticamente en el reproductor.
+            </p>
+          </div>
+        )}
+
+        {/* Highlights/Chapters - Visual Display */}
+        {suggestions.highlights && suggestions.highlights.length > 0 && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-gray-700 flex items-center">
+                <Clock className="w-4 h-4 mr-1" />
+                Vista previa de capítulos
+              </label>
             </div>
             <div className="p-3 bg-blue-50 rounded-lg space-y-2 max-h-48 overflow-y-auto">
               {suggestions.highlights.map((highlight, index) => (
@@ -286,9 +311,6 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
                 </div>
               ))}
             </div>
-            <p className="text-xs text-gray-500 italic">
-              Copia estos capítulos en la descripción para mejorar la navegación del video
-            </p>
           </div>
         )}
       </div>
