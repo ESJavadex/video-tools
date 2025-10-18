@@ -41,13 +41,9 @@ class SuggestionsService:
             "thumbnail_prompt": "Prompt detallado para generar una imagen thumbnail llamativa que incluya elementos visuales específicos del contenido, colores, texto y composición",
             "highlights": [
                 {{"timestamp": "00:00", "text": "Introducción: el problema de los títulos"}},
-                {{"timestamp": "01:43", "text": "Idea: usar IA para transcribir y generar títulos"}},
-                {{"timestamp": "03:15", "text": "Cómo funciona el flujo (transcripción + LLM)"}},
-                {{"timestamp": "05:05", "text": "Qué genera: títulos, descripciones, tags y highlights"}},
-                {{"timestamp": "07:37", "text": "Stack elegido (React + FastAPI + Gemini)"}},
-                {{"timestamp": "09:11", "text": "Problemas con archivos grandes y solución"}},
-                {{"timestamp": "11:38", "text": "Resultados de la transcripción y sugerencias"}},
-                {{"timestamp": "13:17", "text": "Reflexión: convertirlo en un SaaS"}},
+                {{"timestamp": "03:15", "text": "Cómo funciona el flujo completo de procesamiento"}},
+                {{"timestamp": "07:37", "text": "Stack técnico y decisiones de arquitectura"}},
+                {{"timestamp": "11:38", "text": "Resultados y demostración práctica"}},
                 {{"timestamp": "15:30", "text": "Conclusión y próximos pasos"}}
             ],
             "action_items": [
@@ -67,14 +63,13 @@ class SuggestionsService:
         IMPORTANTE:
         - Escapa correctamente las comillas en el JSON
         - Basa las sugerencias ÚNICAMENTE en el contenido transcrito
-        - Incluye TODOS los momentos importantes del video (mínimo 10-20 highlights para videos largos)
-        - Si el video es largo (>10 min), genera AL MENOS 15-25 highlights/capítulos
-        - Distribuye los highlights uniformemente a lo largo de TODO el video
-        - ESPACIADO CRÍTICO: Mínimo 1 minuto entre highlights, pero sigue el flujo natural del contenido
-        - Ejemplo: 00:00, 01:43, 02:50, 06:05...
-        - NO pongas highlights consecutivos como 00:30, 00:45 - respeta mínimo 1 minuto
-        - El timing debe reflejar cambios reales de tema, no intervalos artificiales
-        - NO omitas secciones importantes del video
+        - Genera MÁXIMO 5 highlights/capítulos que capturen ÚNICAMENTE los momentos MÁS IMPORTANTES del video
+        - Selecciona los 5 momentos más relevantes, impactantes o representativos del contenido
+        - Distribuye los highlights estratégicamente a lo largo de TODO el video
+        - ESPACIADO: Los highlights deben estar bien espaciados temporalmente
+        - Ejemplo para video de 15 min: 00:00, 03:15, 07:30, 11:45, 15:30
+        - Cada highlight debe representar un cambio de tema importante, momento clave o sección destacada
+        - El timing debe reflejar los puntos de inflexión o temas principales del contenido
         - La descripción debe ser SEO optimizada y atractiva
 
         PARA ACTION ITEMS:

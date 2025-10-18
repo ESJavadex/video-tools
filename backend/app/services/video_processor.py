@@ -69,9 +69,10 @@ class VideoProcessor:
                 end_seconds=segment.get("end_seconds")
             ))
 
-        # Parse highlights from suggestions
+        # Parse highlights from suggestions (limit to maximum 5)
         highlights = []
-        for highlight in suggestions_result.get("highlights", []):
+        highlights_data = suggestions_result.get("highlights", [])[:5]  # Limit to 5 highlights maximum
+        for highlight in highlights_data:
             highlights.append(TranscriptionSegment(
                 timestamp=highlight["timestamp"],
                 text=highlight.get("text", ""),
