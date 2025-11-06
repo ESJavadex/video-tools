@@ -7,3 +7,8 @@ pydantic
 pydantic-settings
 aiofiles
 cors
+openai-whisper
+ffmpeg-python
+opencv-python
+numpy
+pillow
