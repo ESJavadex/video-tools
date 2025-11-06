@@ -1,0 +1,7 @@
+
+# Test files and debug artifacts
+test_*.py
+analyze_crop.py
+*.jpg
+*.png
+*.jpeg
