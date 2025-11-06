@@ -62,7 +62,17 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
       });
 
       if (!response.ok) {
-        throw new Error('Error al regenerar sugerencias');
+        const errorData = await response.json().catch(() => ({ detail: 'Unknown error' }));
+
+        // Handle specific error types
+        if (response.status === 429) {
+          alert('⚠️ Límite de API alcanzado\n\nHas alcanzado el límite de cuota de Gemini API.\n\nSoluciones:\n1. Espera unos minutos y vuelve a intentarlo\n2. Verifica tu cuota en: https://aistudio.google.com/\n3. Considera actualizar tu plan de API\n\nError: ' + errorData.detail);
+        } else if (response.status === 401) {
+          alert('⚠️ Error de autenticación\n\nProblema con tu GEMINI_API_KEY.\n\nVerifica que:\n1. La clave esté configurada en backend/.env\n2. La clave sea válida\n3. Tengas permisos suficientes\n\nError: ' + errorData.detail);
+        } else {
+          alert('Error al regenerar sugerencias: ' + (errorData.detail || 'Error desconocido'));
+        }
+        return;
       }
 
       const data = await response.json();
@@ -71,7 +81,7 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
       setShowCustomInstructions(false); // Close instructions panel
     } catch (error) {
       console.error('Error regenerating suggestions:', error);
-      alert('Error al regenerar sugerencias. Por favor, inténtalo de nuevo.');
+      alert('Error de conexión al regenerar sugerencias. Verifica que el backend esté ejecutándose.');
     } finally {
       setIsRegenerating(false);
     }

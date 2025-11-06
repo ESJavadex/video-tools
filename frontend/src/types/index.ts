@@ -47,3 +47,51 @@ export interface RegenerateSuggestionsResponse {
   description: string;
   thumbnail_prompt: string;
 }
+
+export interface ClipSuggestion {
+  start_time: number;
+  end_time: number;
+  duration: number;
+  reason: string;
+  hook_text: string;
+  engagement_score: number;
+  transcript_preview: string;
+}
+
+export interface PersonDetectionInfo {
+  face_detected: boolean;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  confidence: number;
+}
+
+export interface ProcessedClip {
+  clip_id: string;
+  suggestion: ClipSuggestion;
+  file_path: string;
+  file_size_mb: number;
+  resolution: string;
+  person_detection?: PersonDetectionInfo;
+}
+
+export interface ClipGenerationResponse {
+  clips: ProcessedClip[];
+  total_clips: number;
+  processing_time_seconds: number;
+  generated_at: string;
+}
+
+export interface SavedAnalysis {
+  filename: string;
+  original_filename: string;
+  analysis_id: string;
+  processed_at: string;
+  duration_seconds: number;
+  file_size_bytes: number;
+}
+
+export interface AnalysesListResponse {
+  analyses: SavedAnalysis[];
+}

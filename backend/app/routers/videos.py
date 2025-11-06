@@ -1,4 +1,4 @@
-from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks
+from fastapi import APIRouter, File, UploadFile, HTTPException, BackgroundTasks, Form
 from fastapi.responses import JSONResponse
 from typing import Optional
 import os
@@ -11,10 +11,19 @@ from app.models.video import (
     VideoUploadResponse,
     VideoTranscriptionResponse,
     RegenerateSuggestionsRequest,
-    RegenerateSuggestionsResponse
+    RegenerateSuggestionsResponse,
+    ClipGenerationRequest,
+    ClipGenerationResponse,
+    ProcessedClip,
+    TranscriptionSegment
 )
 from app.services.video_processor import VideoProcessor
 from app.services.suggestions_service import SuggestionsService
+from app.services.clip_selector_service import analyze_transcript_for_clips
+from app.services.video_editing_service import (
+    detect_person_location,
+    process_clip_suggestion
+)
 from app.config import get_settings
 
 router = APIRouter(prefix="/api/videos", tags=["videos"])
@@ -197,9 +206,289 @@ async def regenerate_suggestions(request: RegenerateSuggestionsRequest):
         )
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Regeneration failed: {str(e)}")
+        import traceback
+        print(f"ERROR: Regeneration failed with exception: {str(e)}")
+        print(f"ERROR: Full traceback:\n{traceback.format_exc()}")
+
+        # Check if it's a Gemini API quota error
+        error_message = str(e).lower()
+        if "quota" in error_message or "rate" in error_message or "limit" in error_message:
+            raise HTTPException(
+                status_code=429,
+                detail=f"API quota exceeded. Please check your Gemini API credits: {str(e)}"
+            )
+        elif "api_key" in error_message or "authentication" in error_message:
+            raise HTTPException(
+                status_code=401,
+                detail=f"API authentication failed. Check your GEMINI_API_KEY: {str(e)}"
+            )
+        else:
+            raise HTTPException(status_code=500, detail=f"Regeneration failed: {str(e)}")
+
+@router.post("/generate-clips", response_model=ClipGenerationResponse)
+async def generate_clips(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    desired_length: int = Form(60),
+    max_clips: int = Form(5),
+    format_type: str = Form("tiktok")
+):
+    """
+    Generate AI-selected clips from a video
+
+    Args:
+        file: Video file to process
+        desired_length: Target clip length in seconds (default 60)
+        max_clips: Maximum number of clips to generate (default 5)
+        format_type: Output format - "tiktok", "instagram", or "youtube-shorts" (default "tiktok")
+
+    Returns:
+        ClipGenerationResponse with processed clips and metadata
+    """
+    start_time = time.time()
+
+    # Validate file
+    try:
+        video_processor.validate_video_file(file.filename, file.size)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    # Generate unique filename
+    file_id = generate_short_id()
+    file_extension = os.path.splitext(file.filename)[1]
+    saved_filename = f"{file_id}{file_extension}"
+    file_path = os.path.join(settings.upload_directory, saved_filename)
+
+    # Save uploaded file
+    try:
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+    finally:
+        file.file.close()
+
+    try:
+        # Step 1: Process video to get transcription
+        print(f"Processing video: {file.filename}")
+        result = await video_processor.process_video(file_path, file.filename)
+
+        # Step 2: Analyze transcript to find best moments for clips
+        print(f"Analyzing transcript for {max_clips} clip suggestions...")
+        clip_suggestions = analyze_transcript_for_clips(
+            transcription=result.transcription,
+            desired_length=desired_length,
+            max_clips=max_clips
+        )
+
+        if not clip_suggestions:
+            raise HTTPException(
+                status_code=500,
+                detail="Could not generate clip suggestions. Please try with a different video or settings."
+            )
+
+        print(f"Found {len(clip_suggestions)} clip suggestions")
+
+        # Step 3: Detect person location in video (for smart cropping)
+        print("Detecting person location in video...")
+        person_info = detect_person_location(file_path)
+
+        if person_info:
+            print(f"Person detected at ({person_info.x}, {person_info.y}) with confidence {person_info.confidence:.2f}")
+        else:
+            print("No person detected, using default crop positioning")
+
+        # Step 4: Process each clip suggestion
+        clips_dir = os.path.join(settings.upload_directory, "clips", file_id)
+        os.makedirs(clips_dir, exist_ok=True)
+
+        processed_clips = []
+
+        for i, clip_suggestion in enumerate(clip_suggestions):
+            print(f"Processing clip {i + 1}/{len(clip_suggestions)}: {clip_suggestion.start_time}s - {clip_suggestion.end_time}s")
+
+            clip_info = process_clip_suggestion(
+                video_path=file_path,
+                clip=clip_suggestion,
+                output_dir=clips_dir,
+                clip_index=i,
+                person_info=person_info,
+                format_type=format_type
+            )
+
+            if clip_info:
+                processed_clip = ProcessedClip(
+                    clip_id=f"{file_id}_clip_{i + 1}",
+                    suggestion=clip_suggestion,
+                    file_path=clip_info["file_path"],
+                    file_size_mb=clip_info["file_size_mb"],
+                    resolution=clip_info["resolution"],
+                    person_detection=person_info
+                )
+                processed_clips.append(processed_clip)
+                print(f"Clip {i + 1} processed successfully: {clip_info['file_size_mb']}MB")
+            else:
+                print(f"Warning: Failed to process clip {i + 1}")
+
+        if not processed_clips:
+            raise HTTPException(
+                status_code=500,
+                detail="Failed to process any clips. Please check video format and try again."
+            )
+
+        # Calculate processing time
+        processing_time = time.time() - start_time
+
+        # Clean up original video file
+        background_tasks.add_task(cleanup_file, file_path)
+
+        print(f"Clip generation complete: {len(processed_clips)} clips in {processing_time:.2f}s")
+
+        return ClipGenerationResponse(
+            clips=processed_clips,
+            total_clips=len(processed_clips),
+            processing_time_seconds=round(processing_time, 2),
+            generated_at=datetime.utcnow()
+        )
+
+    except HTTPException:
+        # Re-raise HTTP exceptions
+        raise
+    except Exception as e:
+        # Clean up on error
+        if os.path.exists(file_path):
+            os.remove(file_path)
+        print(f"Error generating clips: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Clip generation failed: {str(e)}")
+
+
+@router.get("/analyses")
+async def list_analyses():
+    """List all saved analysis results"""
+    try:
+        analyses = []
+
+        # Check if analysis directory exists
+        if not os.path.exists(settings.analysis_directory):
+            return {"analyses": []}
+
+        # List all JSON files in analysis directory
+        for filename in os.listdir(settings.analysis_directory):
+            if filename.endswith("_analysis.json"):
+                file_path = os.path.join(settings.analysis_directory, filename)
+
+                # Read file to get metadata
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+
+                    analyses.append({
+                        "filename": filename,
+                        "original_filename": data.get("original_filename", "Unknown"),
+                        "analysis_id": data.get("analysis_id", ""),
+                        "processed_at": data.get("processed_at", ""),
+                        "duration_seconds": data.get("duration_seconds", 0),
+                        "file_size_bytes": os.path.getsize(file_path)
+                    })
+                except Exception as e:
+                    print(f"WARNING: Could not read analysis file {filename}: {str(e)}")
+                    continue
+
+        # Sort by processed_at descending (most recent first)
+        analyses.sort(key=lambda x: x["processed_at"], reverse=True)
+
+        return {"analyses": analyses}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to list analyses: {str(e)}")
+
+
+@router.get("/analyses/{filename}")
+async def load_analysis(filename: str):
+    """Load a specific analysis result by filename"""
+    try:
+        # Security: ensure filename only contains safe characters
+        if not filename.endswith("_analysis.json") or ".." in filename or "/" in filename:
+            raise HTTPException(status_code=400, detail="Invalid filename")
+
+        file_path = os.path.join(settings.analysis_directory, filename)
+
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=404, detail="Analysis not found")
+
+        # Read and return analysis data
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # Convert to VideoTranscriptionResponse format
+        transcription = [TranscriptionSegment(**seg) for seg in data["transcription"]]
+
+        from app.models.video import VideoSuggestions
+        suggestions = VideoSuggestions(**data["suggestions"])
+
+        response = VideoTranscriptionResponse(
+            id=data["analysis_id"],
+            original_filename=data["original_filename"],
+            processed_at=datetime.fromisoformat(data["processed_at"]),
+            duration_seconds=data["duration_seconds"],
+            transcription=transcription,
+            suggestions=suggestions
+        )
+
+        return response
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to load analysis: {str(e)}")
+
 
 @router.get("/health")
 async def health_check():
     """Check if the video service is running"""
     return {"status": "healthy", "service": "video-processor"}
+
+
+@router.get("/gemini-status")
+async def check_gemini_status():
+    """Check Gemini API connection and status"""
+    try:
+        import google.generativeai as genai
+        from app.config import get_settings
+
+        settings = get_settings()
+
+        # Check if API key is configured
+        if not settings.gemini_api_key or settings.gemini_api_key == "":
+            return {
+                "status": "error",
+                "message": "GEMINI_API_KEY not configured in .env file"
+            }
+
+        # Try to list models to verify API key works
+        genai.configure(api_key=settings.gemini_api_key)
+        models = list(genai.list_models())
+
+        return {
+            "status": "online",
+            "message": "Gemini API is working",
+            "api_key_prefix": settings.gemini_api_key[:10] + "..." if len(settings.gemini_api_key) > 10 else "***",
+            "models_available": len(models)
+        }
+
+    except Exception as e:
+        error_str = str(e)
+
+        # Check for common error types
+        if "API_KEY_INVALID" in error_str or "invalid" in error_str.lower():
+            status_msg = "Invalid API key"
+        elif "quota" in error_str.lower() or "limit" in error_str.lower():
+            status_msg = "API quota exceeded or rate limited"
+        elif "permission" in error_str.lower():
+            status_msg = "Permission denied - check API key permissions"
+        else:
+            status_msg = f"API error: {error_str}"
+
+        return {
+            "status": "error",
+            "message": status_msg,
+            "error": error_str
+        }

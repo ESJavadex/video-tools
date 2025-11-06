@@ -4,6 +4,8 @@ import VideoUploader from './components/VideoUploader';
 import TranscriptionViewer from './components/TranscriptionViewer';
 import SuggestionsPanel from './components/SuggestionsPanel';
 import ActionItemsPanel from './components/ActionItemsPanel';
+import ClipSelector from './components/ClipSelector';
+import { SavedAnalysesList } from './components/SavedAnalysesList';
 import { videoApi } from './services/api';
 import { VideoTranscriptionResponse } from './types';
 
@@ -12,6 +14,8 @@ function App() {
   const [result, setResult] = useState<VideoTranscriptionResponse | null>(null);
   const [error, setError] = useState<string>('');
   const [apiStatus, setApiStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [isLoadingAnalysis, setIsLoadingAnalysis] = useState(false);
 
   useEffect(() => {
     checkApiStatus();
@@ -26,6 +30,7 @@ function App() {
     setIsProcessing(true);
     setError('');
     setResult(null);
+    setUploadedFile(file); // Store the file for later use in ClipSelector
 
     try {
       const response = await videoApi.uploadAndProcess(file);
@@ -44,6 +49,28 @@ function App() {
   const resetApp = () => {
     setResult(null);
     setError('');
+    setUploadedFile(null);
+  };
+
+  const handleLoadAnalysis = async (filename: string) => {
+    setIsLoadingAnalysis(true);
+    setError('');
+
+    try {
+      const response = await videoApi.loadAnalysis(filename);
+      setResult(response);
+      // Note: uploadedFile will be null for loaded analyses,
+      // so ClipSelector won't be available (expected behavior)
+      setUploadedFile(null);
+    } catch (err: any) {
+      console.error('Error loading analysis:', err);
+      setError(
+        err.response?.data?.detail ||
+        'Error al cargar el análisis. Por favor, intenta de nuevo.'
+      );
+    } finally {
+      setIsLoadingAnalysis(false);
+    }
   };
 
   return (
@@ -84,14 +111,14 @@ function App() {
 
         {/* Main Content */}
         {!result ? (
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-6">
             <VideoUploader
               onFileSelect={handleFileSelect}
               isProcessing={isProcessing}
             />
 
             {error && (
-              <div className="max-w-2xl mx-auto mt-6">
+              <div className="max-w-2xl mx-auto">
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start">
                   <AlertCircle className="w-5 h-5 text-red-500 mr-2 flex-shrink-0" />
                   <div>
@@ -107,6 +134,14 @@ function App() {
                   </div>
                 </div>
               </div>
+            )}
+
+            {/* Saved Analyses */}
+            {apiStatus === 'online' && (
+              <SavedAnalysesList
+                onLoadAnalysis={handleLoadAnalysis}
+                isLoading={isLoadingAnalysis}
+              />
             )}
           </div>
         ) : (
@@ -161,6 +196,11 @@ function App() {
                   </dl>
                 </div>
               </div>
+            </div>
+
+            {/* Clip Generator Section */}
+            <div className="mt-8">
+              <ClipSelector videoFile={uploadedFile || undefined} />
             </div>
           </div>
         )}

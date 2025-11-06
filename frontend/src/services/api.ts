@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { VideoTranscriptionResponse } from '../types';
+import { VideoTranscriptionResponse, ClipGenerationResponse, AnalysesListResponse } from '../types';
 
 const API_BASE_URL = '/api';
 
@@ -33,5 +33,40 @@ export const videoApi = {
     } catch {
       return false;
     }
+  },
+
+  async generateClips(
+    file: File,
+    desiredLength: number = 60,
+    maxClips: number = 5,
+    formatType: string = 'tiktok'
+  ): Promise<ClipGenerationResponse> {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('desired_length', desiredLength.toString());
+    formData.append('max_clips', maxClips.toString());
+    formData.append('format_type', formatType);
+
+    const response = await api.post<ClipGenerationResponse>(
+      '/videos/generate-clips',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+
+    return response.data;
+  },
+
+  async listAnalyses(): Promise<AnalysesListResponse> {
+    const response = await api.get<AnalysesListResponse>('/videos/analyses');
+    return response.data;
+  },
+
+  async loadAnalysis(filename: string): Promise<VideoTranscriptionResponse> {
+    const response = await api.get<VideoTranscriptionResponse>(`/videos/analyses/${filename}`);
+    return response.data;
   },
 };
