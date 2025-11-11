@@ -141,10 +141,20 @@ async def upload_and_process_video(
 
         return result
     except Exception as e:
+        print(f"ERROR: Video processing failed: {str(e)}")
+        import traceback
+        print(f"ERROR: Full traceback:\n{traceback.format_exc()}")
+
         # Clean up on error
         if os.path.exists(file_path):
             os.remove(file_path)
-        raise HTTPException(status_code=500, detail=f"Processing failed: {str(e)}")
+
+        # Provide more helpful error message
+        error_detail = f"Processing failed: {str(e)}"
+        if "gemini" in str(e).lower() or "api" in str(e).lower():
+            error_detail += " (Note: Transcription may have completed but AI suggestions failed. Check logs for details.)"
+
+        raise HTTPException(status_code=500, detail=error_detail)
 
 def save_analysis_result(result: VideoTranscriptionResponse, original_filename: str):
     """Save analysis result to analysis_results folder"""

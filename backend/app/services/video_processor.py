@@ -29,8 +29,13 @@ class VideoProcessor:
         # Step 1: Try local Whisper transcription, fallback to Gemini if needed
         whisper_result = None
         try:
-            print(f"DEBUG: Starting local Whisper transcription...")
-            whisper_result = self.whisper_service.transcribe_video(file_path, language="es")
+            print(f"DEBUG: Starting local Whisper transcription with progress tracking...")
+            whisper_result = self.whisper_service.transcribe_video(
+                file_path,
+                language="es",
+                video_id=video_id,
+                original_filename=original_filename
+            )
             print(f"DEBUG: Whisper transcription completed successfully")
         except Exception as whisper_error:
             print(f"DEBUG: Whisper failed: {str(whisper_error)}")
@@ -51,15 +56,7 @@ class VideoProcessor:
             }
             print(f"DEBUG: Gemini fallback transcription completed successfully")
 
-        # Step 2: Generate suggestions with Gemini
-        print(f"DEBUG: Generating suggestions with Gemini...")
-        suggestions_result = self.suggestions_service.generate_suggestions(
-            whisper_result["transcription"],
-            original_filename
-        )
-        print(f"DEBUG: Suggestions generation completed successfully")
-
-        # Parse transcription from Whisper
+        # Parse transcription from Whisper FIRST (before Gemini call)
         transcription_segments = []
         for segment in whisper_result.get("transcription", []):
             transcription_segments.append(TranscriptionSegment(
@@ -68,6 +65,37 @@ class VideoProcessor:
                 start_seconds=segment.get("start_seconds", 0),
                 end_seconds=segment.get("end_seconds")
             ))
+
+        # Use duration from Whisper
+        duration = whisper_result.get("duration", 0)
+        if not duration and transcription_segments:
+            duration = max(seg.start_seconds for seg in transcription_segments)
+
+        # SAVE TRANSCRIPTION IMMEDIATELY (before Gemini call)
+        print(f"DEBUG: Saving transcription before Gemini call...")
+        self._save_transcription_backup(video_id, original_filename, transcription_segments, duration)
+        print(f"DEBUG: Transcription backup saved successfully")
+
+        # Step 2: Generate suggestions with Gemini (with error recovery)
+        print(f"DEBUG: Generating suggestions with Gemini...")
+        suggestions_result = None
+        try:
+            suggestions_result = self.suggestions_service.generate_suggestions(
+                whisper_result["transcription"],
+                original_filename
+            )
+            print(f"DEBUG: Suggestions generation completed successfully")
+        except Exception as gemini_error:
+            print(f"WARNING: Gemini suggestions failed: {str(gemini_error)}")
+            print(f"WARNING: Transcription is safe! Returning with default suggestions.")
+            # Create default/empty suggestions
+            suggestions_result = {
+                "title": f"Video: {original_filename}",
+                "description": "AI suggestions failed to generate. Please use the regenerate feature to try again with your saved transcription.",
+                "thumbnail_prompt": "Video thumbnail",
+                "highlights": [],
+                "action_items": []
+            }
 
         # Parse highlights from suggestions (limit to maximum 5)
         highlights = []
@@ -100,11 +128,6 @@ class VideoProcessor:
             action_items=action_items
         )
 
-        # Use duration from Whisper
-        duration = whisper_result.get("duration", 0)
-        if not duration and transcription_segments:
-            duration = max(seg.start_seconds for seg in transcription_segments)
-
         return VideoTranscriptionResponse(
             id=video_id,
             original_filename=original_filename,
@@ -113,6 +136,33 @@ class VideoProcessor:
             duration_seconds=duration,
             processed_at=datetime.utcnow()
         )
+
+    def _save_transcription_backup(self, video_id: str, original_filename: str, transcription: list, duration: float):
+        """Save transcription backup immediately after Whisper completes"""
+        import json
+
+        backup_dir = os.path.join(self.settings.analysis_directory, "transcription_backups")
+        os.makedirs(backup_dir, exist_ok=True)
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        clean_filename = "".join(c for c in original_filename if c.isalnum() or c in (' ', '-', '_')).rstrip()
+        clean_filename = clean_filename.replace(' ', '_')
+
+        backup_filename = f"{timestamp}_{clean_filename}_transcription.json"
+        backup_path = os.path.join(backup_dir, backup_filename)
+
+        backup_data = {
+            "video_id": video_id,
+            "original_filename": original_filename,
+            "saved_at": datetime.utcnow().isoformat(),
+            "duration_seconds": duration,
+            "transcription": [seg.dict() if hasattr(seg, 'dict') else seg for seg in transcription]
+        }
+
+        with open(backup_path, 'w', encoding='utf-8') as f:
+            json.dump(backup_data, f, indent=2, ensure_ascii=False)
+
+        print(f"DEBUG: Transcription backup saved to: {backup_path}")
 
     def _parse_timestamp(self, timestamp: str) -> float:
         """Convert timestamp string to seconds"""

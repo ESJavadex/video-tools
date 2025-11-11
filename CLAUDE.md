@@ -124,3 +124,114 @@ Full-stack YouTube video processing application using **OpenAI Whisper** for loc
 #### State Management
 - React state manages: upload progress, processing status, transcription, suggestions, action items
 - No external state library (Redux/Zustand) - using built-in React hooks
+
+## 🛡️ Transcription Safety System
+
+### Overview
+Multi-layer protection ensures transcriptions are **never lost**, even if processing crashes or Gemini API fails.
+
+### Protection Layers
+
+1. **Progress Tracking** (Real-time)
+   - Creates progress file immediately when transcription starts: `analysis_results/transcription_progress/`
+   - Updates at each stage: `initializing` → `extracting_audio` → `transcribing` → `transcription_complete` → `complete`
+   - Saves transcription **immediately** after Whisper completes, before calling Gemini
+
+2. **Immediate Backup** (Post-Whisper)
+   - Saves raw Whisper result with all segments to progress file
+   - Saves formatted transcription segments
+   - Both saves happen **before** the risky Gemini API call
+
+3. **Graceful Degradation** (Gemini Failure)
+   - If Gemini fails, system returns transcription with default suggestions
+   - User can regenerate suggestions later without re-transcribing
+   - Error message: "AI suggestions failed. Use regenerate feature."
+
+### Key Files
+
+```
+backend/
+├── analysis_results/
+│   ├── transcription_progress/          # Real-time progress tracking
+│   ├── transcription_backups/           # Post-Whisper backups (legacy)
+│   └── *_analysis.json                  # Final complete results
+├── recover_transcription.py             # Recovery utility script
+└── TRANSCRIPTION_SAFETY.md             # Full documentation
+```
+
+### Recovery Utility
+
+```bash
+# List all transcription jobs (shows status, progress, segments saved)
+python recover_transcription.py list
+
+# Recover specific job by filename
+python recover_transcription.py recover 20251111_230045_abc123_progress.json
+
+# Recover most recent job
+python recover_transcription.py latest
+```
+
+### Technical Implementation
+
+**Whisper Service** (`whisper_service.py`):
+- New parameters: `video_id` and `original_filename` enable progress tracking
+- Methods: `_create_progress_file()`, `_update_progress()`, `_save_raw_whisper_result()`, `_save_formatted_segments()`
+- Progress saved to: `analysis_results/transcription_progress/{timestamp}_{video_id}_progress.json`
+
+**Video Processor** (`video_processor.py`):
+- Passes `video_id` and `original_filename` to Whisper service
+- Wraps Gemini calls in try-catch with fallback to default suggestions
+- Saves transcription backup before Gemini call (redundant safety)
+
+**Progress File Format**:
+```json
+{
+  "video_id": "abc123",
+  "status": "in_progress",
+  "stage": "transcription_complete",
+  "progress_percent": 90,
+  "raw_whisper_result": {
+    "segments": [...],  // All Whisper segments
+    "duration": 3720.5
+  },
+  "formatted_segments": [...],  // Ready-to-use format
+  "error": null
+}
+```
+
+### Recovery Scenarios
+
+**Scenario 1: Gemini API Fails (Most Common)**
+- Whisper completes successfully (e.g., 582 segments)
+- Gemini times out or hits quota
+- ✅ System returns transcription with default suggestions
+- ✅ Transcription already in progress file + final analysis file
+- User can click "Regenerate Suggestions" without re-uploading
+
+**Scenario 2: Process Crashes After Whisper Completes**
+- Whisper saves 582 segments to progress file
+- Server crashes before Gemini runs
+- ✅ Run: `python recover_transcription.py latest`
+- ✅ Creates `*_RECOVERED_analysis.json` in `analysis_results/`
+- Load in frontend, regenerate suggestions
+
+**Scenario 3: Process Crashes During Whisper**
+- Whisper still transcribing (50% complete)
+- Server/network failure
+- ❌ No transcription saved yet (Whisper doesn't support partial results)
+- Must re-upload video
+
+### Best Practices
+
+1. **Monitor progress directory**: Check `analysis_results/transcription_progress/` for stuck jobs
+2. **Run recovery utility**: Periodically run `list` command to find recoverable jobs
+3. **Keep progress files**: Don't delete until final analysis confirmed successful
+4. **Use regenerate feature**: If suggestions are poor, regenerate without re-transcribing
+
+### Implementation Notes
+
+- Whisper's `model.transcribe()` is atomic - returns all segments at once (no streaming)
+- Progress file saves **immediately** after Whisper returns, before any Gemini calls
+- ALTS/gRPC warnings from Gemini are harmless (occurs when running outside Google Cloud)
+- Recovery script converts both raw and formatted segments to standard analysis format
