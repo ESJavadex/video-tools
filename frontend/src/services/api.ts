@@ -5,7 +5,7 @@ const API_BASE_URL = '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 600000, // 10 minutes for video processing
+  timeout: 1800000, // 30 minutes for large video processing (3GB+ files can take 15-30 min with Whisper)
 });
 
 export const videoApi = {

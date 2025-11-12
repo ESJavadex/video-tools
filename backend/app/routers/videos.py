@@ -19,6 +19,7 @@ from app.models.video import (
 )
 from app.services.video_processor import VideoProcessor
 from app.services.suggestions_service import SuggestionsService
+from app.services.openai_service import OpenAIService
 from app.services.clip_selector_service import analyze_transcript_for_clips
 from app.services.video_editing_service import (
     detect_person_location,
@@ -29,7 +30,14 @@ from app.config import get_settings
 router = APIRouter(prefix="/api/videos", tags=["videos"])
 settings = get_settings()
 video_processor = VideoProcessor()
-suggestions_service = SuggestionsService()
+
+# Initialize suggestions service based on AI provider setting
+if settings.ai_provider == "openai":
+    print(f"DEBUG [Router]: Using OpenAI service for suggestions")
+    suggestions_service = OpenAIService(model=settings.openai_model)
+else:
+    print(f"DEBUG [Router]: Using Gemini service for suggestions")
+    suggestions_service = SuggestionsService()
 
 # Create uploads and analysis directories if they don't exist
 os.makedirs(settings.upload_directory, exist_ok=True)
@@ -203,8 +211,21 @@ async def regenerate_suggestions(request: RegenerateSuggestionsRequest):
         # Convert Pydantic models to dict for suggestions service
         transcription_dicts = [seg.dict() for seg in request.transcription]
 
+        # Select service based on request or use default
+        selected_service = suggestions_service
+        if request.ai_provider:
+            print(f"DEBUG: Using requested AI provider: {request.ai_provider}")
+            if request.ai_provider.lower() == "openai":
+                selected_service = OpenAIService(model=settings.openai_model)
+            elif request.ai_provider.lower() == "gemini":
+                selected_service = SuggestionsService()
+            else:
+                print(f"WARNING: Unknown provider '{request.ai_provider}', using default")
+        else:
+            print(f"DEBUG: Using default AI provider: {settings.ai_provider}")
+
         # Call suggestions service to regenerate suggestions
-        result = suggestions_service.regenerate_suggestions(
+        result = selected_service.regenerate_suggestions(
             transcription=transcription_dicts,
             custom_instructions=request.custom_instructions
         )
@@ -212,7 +233,8 @@ async def regenerate_suggestions(request: RegenerateSuggestionsRequest):
         return RegenerateSuggestionsResponse(
             titles=result.get("titles", []),
             description=result.get("description", ""),
-            thumbnail_prompt=result.get("thumbnail_prompt", "")
+            thumbnail_prompt=result.get("thumbnail_prompt", ""),
+            linkedin_post=result.get("linkedin_post", "")
         )
 
     except Exception as e:

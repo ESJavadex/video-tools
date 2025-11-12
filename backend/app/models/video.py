@@ -20,6 +20,7 @@ class VideoSuggestions(BaseModel):
     thumbnail_prompt: str
     highlights: List[TranscriptionSegment]
     action_items: List[ActionItem] = []
+    linkedin_post: str = ""  # LinkedIn post for sharing
 
 class VideoTranscriptionRequest(BaseModel):
     file_path: str
@@ -43,11 +44,13 @@ class VideoUploadResponse(BaseModel):
 class RegenerateSuggestionsRequest(BaseModel):
     transcription: List[TranscriptionSegment]
     custom_instructions: Optional[str] = None
+    ai_provider: Optional[str] = None  # "openai" or "gemini" - overrides default setting
 
 class RegenerateSuggestionsResponse(BaseModel):
     titles: List[str]
     description: str
     thumbnail_prompt: str
+    linkedin_post: str = ""  # LinkedIn post for sharing
 
 class ClipSuggestion(BaseModel):
     """AI-suggested video clip with engagement analysis"""

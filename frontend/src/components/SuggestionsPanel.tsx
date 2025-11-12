@@ -24,6 +24,7 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [regeneratedSuggestions, setRegeneratedSuggestions] = useState<RegenerateSuggestionsResponse | null>(null);
   const [selectedTitleIndex, setSelectedTitleIndex] = useState<number>(0);
+  const [aiProvider, setAiProvider] = useState<'openai' | 'gemini'>('openai');
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -58,6 +59,7 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
         body: JSON.stringify({
           transcription,
           custom_instructions: customInstructions.trim() || undefined,
+          ai_provider: aiProvider,
         }),
       });
 
@@ -116,20 +118,63 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
 
         {/* Custom Instructions Panel */}
         {showCustomInstructions && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Instrucciones personalizadas (opcional)
-            </label>
-            <textarea
-              value={customInstructions}
-              onChange={(e) => setCustomInstructions(e.target.value)}
-              placeholder="Ej: Enfócate en SEO, usa un tono más profesional, incluye palabras clave específicas..."
-              className="w-full p-3 border border-gray-300 rounded-lg text-sm resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              rows={3}
-            />
-            <p className="text-xs text-gray-500 mt-2">
-              Estas instrucciones se usarán para personalizar los títulos, descripción y thumbnail.
-            </p>
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg space-y-4">
+            {/* AI Provider Selector */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Proveedor de IA
+              </label>
+              <div className="flex space-x-3">
+                <button
+                  onClick={() => setAiProvider('openai')}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+                    aiProvider === 'openai'
+                      ? 'bg-green-600 text-white shadow-md'
+                      : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="mr-2">🤖</span>
+                    OpenAI GPT-4
+                  </div>
+                </button>
+                <button
+                  onClick={() => setAiProvider('gemini')}
+                  className={`flex-1 px-4 py-2 rounded-lg font-medium text-sm transition-all ${
+                    aiProvider === 'gemini'
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <div className="flex items-center justify-center">
+                    <span className="mr-2">✨</span>
+                    Google Gemini
+                  </div>
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                {aiProvider === 'openai'
+                  ? '🤖 OpenAI gpt-4.1-mini proporciona sugerencias de alta calidad con salidas estructuradas'
+                  : '✨ Google Gemini es rápido y rentable para análisis de contenido'}
+              </p>
+            </div>
+
+            {/* Custom Instructions */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Instrucciones personalizadas (opcional)
+              </label>
+              <textarea
+                value={customInstructions}
+                onChange={(e) => setCustomInstructions(e.target.value)}
+                placeholder="Ej: Enfócate en SEO, usa un tono más profesional, incluye palabras clave específicas..."
+                className="w-full p-3 border border-gray-300 rounded-lg text-sm resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                rows={3}
+              />
+              <p className="text-xs text-gray-500 mt-2">
+                Estas instrucciones se usarán para personalizar los títulos, descripción y thumbnail.
+              </p>
+            </div>
           </div>
         )}
       </div>
@@ -264,6 +309,46 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
             </p>
           </div>
         </div>
+
+        {/* LinkedIn Post */}
+        {(suggestions.linkedin_post || regeneratedSuggestions?.linkedin_post) && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-gray-700 flex items-center">
+                <FileText className="w-4 h-4 mr-1" />
+                Post para LinkedIn
+              </label>
+              <button
+                onClick={() => copyToClipboard(
+                  regeneratedSuggestions?.linkedin_post || suggestions.linkedin_post,
+                  'linkedin-post'
+                )}
+                className="text-sm text-white bg-blue-600 hover:bg-blue-700 flex items-center px-3 py-1.5 rounded"
+              >
+                {copiedField === 'linkedin-post' ? (
+                  <>
+                    <Check className="w-3 h-3 mr-1" />
+                    Copiado
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3 h-3 mr-1" />
+                    Copiar para LinkedIn
+                  </>
+                )}
+              </button>
+            </div>
+            <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border-2 border-blue-200 max-h-96 overflow-y-auto">
+              <pre className="text-sm text-gray-800 whitespace-pre-wrap font-sans leading-relaxed">
+                {regeneratedSuggestions?.linkedin_post || suggestions.linkedin_post}
+              </pre>
+            </div>
+            <p className="text-xs text-gray-500 italic flex items-center">
+              <span className="mr-2">💼</span>
+              Post conversacional y humano listo para compartir en LinkedIn. Detecta automáticamente si es un podcast.
+            </p>
+          </div>
+        )}
 
         {/* YouTube Chapters - Formatted for direct paste */}
         {suggestions.highlights && suggestions.highlights.length > 0 && (

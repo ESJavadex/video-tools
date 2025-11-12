@@ -9,13 +9,21 @@ from app.models.video import (
 )
 from app.services.whisper_service import WhisperService
 from app.services.suggestions_service import SuggestionsService
+from app.services.openai_service import OpenAIService
 from app.config import get_settings
 
 class VideoProcessor:
     def __init__(self):
         self.whisper_service = WhisperService(model_name="small")  # Better accuracy for longer videos
-        self.suggestions_service = SuggestionsService()
         self.settings = get_settings()
+
+        # Initialize AI service based on provider setting
+        if self.settings.ai_provider == "openai":
+            print(f"DEBUG: Using OpenAI as AI provider (model: {self.settings.openai_model})")
+            self.suggestions_service = OpenAIService(model=self.settings.openai_model)
+        else:
+            print(f"DEBUG: Using Gemini as AI provider")
+            self.suggestions_service = SuggestionsService()
 
     async def process_video(self, file_path: str, original_filename: str) -> VideoTranscriptionResponse:
         """Process video file and return transcription with suggestions"""

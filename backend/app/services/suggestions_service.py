@@ -72,6 +72,32 @@ class SuggestionsService:
         - El timing debe reflejar los puntos de inflexión o temas principales del contenido
         - La descripción debe ser SEO optimizada y atractiva
 
+        PARA LINKEDIN POST:
+        - Escribe un post SUPER HUMANO y conversacional para LinkedIn (350-500 palabras)
+        - FORMATO: Texto plano SIN MARKDOWN (LinkedIn no acepta markdown)
+        - Para viñetas usa: • o ► o simplemente saltos de línea
+        - NO uses **, *, #, o cualquier sintaxis markdown
+        - Usa emojis y MAYÚSCULAS para énfasis en lugar de markdown
+        - Detecta si es un PODCAST basándote en:
+          * Palabras en transcripción: "podcast", "episodio", "invitado", "conversación"
+          * Contexto de entrevista/diálogo entre personas
+        - Si ES PODCAST:
+          * Comienza con "ESTRENO PODCAST!!" o similar entusiasta
+          * Presenta al invitado con credenciales y logros
+          * Usa • o ► para destacar temas principales (NO markdown)
+          * Menciona "episodio", "conversación", "hablamos de"
+          * Termina con "Link en comentarios!" o similar
+        - Si NO es podcast (tutorial, vlog, etc):
+          * Comienza con un gancho relacionado al tema
+          * Resume el valor que aporta el contenido
+          * Usa • para puntos clave (NO markdown)
+          * Termina con call-to-action apropiado
+        - IMPORTANTE: Tono muy natural, como si lo escribiera una persona real
+        - Usa emojis ocasionales pero sin exagerar
+        - Incluye entusiasmo genuino pero sin ser spam
+        - Sé específico sobre el contenido, no genérico
+        - Ejemplo de estilo: "Una conversación honesta, sin filtros como ya sabeis, sin guión y llena de experiencias reales"
+
         PARA ACTION ITEMS:
         - Identifica TODAS las acciones y compromisos mencionados, incluyendo:
           * Acciones futuras: "voy a", "vamos a", "haré", "haremos", "te voy a", "les voy a"
@@ -198,6 +224,11 @@ class SuggestionsService:
                 result['action_items'] = []
                 print(f"DEBUG: No action_items in response, adding empty list")
 
+            # Ensure linkedin_post key exists
+            if 'linkedin_post' not in result:
+                result['linkedin_post'] = "Post para LinkedIn generado automáticamente."
+                print(f"DEBUG: No linkedin_post in response, adding default")
+
             # DEBUG: If no action items found, add a demo one for testing UI
             if len(result.get('action_items', [])) == 0:
                 print("DEBUG: No action items detected - adding demo item for UI testing")
@@ -223,5 +254,6 @@ class SuggestionsService:
                 "description": "Descripción generada automáticamente basada en el contenido del video.",
                 "thumbnail_prompt": "Thumbnail atractivo para video de YouTube",
                 "highlights": [],
-                "action_items": []
+                "action_items": [],
+                "linkedin_post": "Post para LinkedIn generado automáticamente."
             }

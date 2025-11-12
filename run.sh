@@ -59,7 +59,7 @@ fi
 # Start backend
 echo -e "${GREEN}Starting backend server on port 8000...${NC}"
 cd backend
-python -m uvicorn app.main:app --reload --port 8000 &
+python -m uvicorn app.main:app --reload --port 8000 --timeout-keep-alive 3600 &
 BACKEND_PID=$!
 cd ..
 

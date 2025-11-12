@@ -31,20 +31,22 @@ npm run preview                             # Preview production build
 
 ## Architecture Overview
 
-Full-stack YouTube video processing application using **OpenAI Whisper** for local transcription and **Google Gemini AI** for content analysis and suggestions.
+Full-stack YouTube video processing application using **OpenAI Whisper** for local transcription and **OpenAI GPT-4 / Google Gemini AI** (configurable) for content analysis and suggestions.
 
 ### Backend Architecture (FastAPI + Python)
 - **FastAPI** server with async/await patterns and multipart file upload support
-- **Dual AI integration**:
+- **Multi-AI integration**:
   - **Local Whisper** (`whisper_service.py`) - Primary transcription engine (model: "small")
-  - **Gemini AI** (`gemini.py`) - Fallback transcription + content suggestions (model: "gemini-2.0-flash-exp")
+  - **OpenAI GPT-4** (`openai_service.py`) - AI suggestions with structured outputs (default, model: "gpt-4.1-mini")
+  - **Gemini AI** (`gemini.py`) - Alternative AI provider + fallback transcription (model: "gemini-2.0-flash-exp")
 - **Pydantic models** for type safety and API contracts
 - **Service-oriented architecture**:
   - `app/main.py` - FastAPI app configuration, CORS, and router registration
-  - `app/config.py` - Settings management with pydantic-settings (environment variables)
+  - `app/config.py` - Settings management with pydantic-settings (environment variables, AI provider selection)
   - `app/services/whisper_service.py` - Local video transcription with OpenAI Whisper
-  - `app/services/suggestions_service.py` - Gemini-based content suggestions and regeneration
-  - `app/services/video_processor.py` - Orchestration layer coordinating Whisper + Gemini
+  - `app/services/openai_service.py` - OpenAI GPT-4 based content suggestions with structured outputs
+  - `app/services/suggestions_service.py` - Gemini-based content suggestions and regeneration (alternative)
+  - `app/services/video_processor.py` - Orchestration layer coordinating Whisper + AI provider
   - `app/routers/videos.py` - API endpoints for video processing and suggestion regeneration
   - `app/models/video.py` - Pydantic models (VideoTranscriptionResponse, VideoSuggestions, ActionItem, etc.)
 
@@ -68,24 +70,28 @@ Full-stack YouTube video processing application using **OpenAI Whisper** for loc
 3. **Transcription (Two-Step Approach)**:
    - **Primary**: Local Whisper transcription (faster, no API costs, works offline)
    - **Fallback**: Gemini File API transcription (if Whisper fails)
-4. **AI Analysis**: Gemini processes transcription text and generates:
+4. **AI Analysis**: AI provider (OpenAI or Gemini) processes transcription text and generates:
    - Optimized YouTube title (max 60 chars)
    - SEO description (150-200 words)
    - Thumbnail prompt (detailed visual description)
    - 15-30 video highlights/chapters with timestamps
    - Action items with priority levels (alta/media/baja)
-5. **Response Parsing**: Backend structures Gemini's JSON response into Pydantic models
+5. **Response Parsing**: Backend structures AI JSON response into Pydantic models (OpenAI uses native structured outputs)
 6. **Auto-Save**: Analysis results saved to `backend/analysis_results/` with timestamp
 7. **Frontend Display**: Results shown with copy-to-clipboard functionality
 
 ### Regeneration Flow
 - User can regenerate suggestions with custom instructions
 - Transcription remains static (cached from initial processing)
-- Gemini generates 4 alternative titles + updated suggestions
-- Uses unique analysis ID to bypass Gemini caching
+- AI provider generates 4 alternative titles + updated suggestions
+- Uses unique analysis ID to bypass caching
 
 ### Environment Configuration
-- **Backend**: Requires `GEMINI_API_KEY` in `backend/.env` file
+- **Backend AI Provider**: Configure in `backend/.env` file
+  - `AI_PROVIDER` - Choose "openai" (default) or "gemini"
+  - `OPENAI_API_KEY` - Required if using OpenAI (GPT-4)
+  - `OPENAI_MODEL` - OpenAI model selection (default: "gpt-4.1-mini", also: "gpt-4.1-mini-mini", "gpt-4-turbo")
+  - `GEMINI_API_KEY` - Required if using Gemini
 - **CORS**: Configured for `localhost:5173` and `localhost:3000`
 - **Vite Proxy**: Forwards `/api/*` requests to `localhost:8000` in development
 - **File Storage**: Temporary uploads stored in `backend/uploads/` (auto-cleanup after processing)
@@ -106,9 +112,14 @@ Full-stack YouTube video processing application using **OpenAI Whisper** for loc
 #### AI Processing Strategy
 - **Whisper Model**: Uses "small" model for balance of speed/accuracy (supports videos 30+ min)
 - **Language**: Default Spanish ("es"), configurable in service layer
-- **Gemini Model**: "gemini-2.0-flash-exp" for fast, cost-effective suggestions
-- **Cache Busting**: Analysis ID with timestamp ensures no stale Gemini cache hits
-- **Fallback**: Whisper → Gemini transcription chain ensures reliability
+- **OpenAI Models**:
+  - "gpt-4.1-mini" (default) - Latest GPT-4 Omni for fast, high-quality suggestions with structured outputs
+  - "gpt-4.1-mini-mini" - Cost-effective option for simpler content
+  - "gpt-4-turbo" - High-capability model for complex analysis
+- **Gemini Model**: "gemini-2.0-flash-exp" for fast, cost-effective suggestions (alternative provider)
+- **Cache Busting**: Analysis ID with timestamp ensures no stale cache hits
+- **Fallback Chain**: Whisper → Gemini transcription (if Whisper fails)
+- **Provider Selection**: Choose AI provider in `.env` with `AI_PROVIDER` setting
 
 #### Action Items Detection
 - **Spanish Pattern Matching**: Detects future tense ("voy a", "haré"), promises ("tendrás"), commitments ("compartir")
