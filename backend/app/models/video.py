@@ -18,6 +18,7 @@ class VideoSuggestions(BaseModel):
     titles: List[str] = []  # Multiple title options
     description: str
     thumbnail_prompt: str
+    thumbnail_texts: List[str] = []  # Clickbait texts for thumbnail overlay
     highlights: List[TranscriptionSegment]
     action_items: List[ActionItem] = []
     linkedin_post: str = ""  # LinkedIn post for sharing
@@ -50,6 +51,7 @@ class RegenerateSuggestionsResponse(BaseModel):
     titles: List[str]
     description: str
     thumbnail_prompt: str
+    thumbnail_texts: List[str] = []  # Clickbait texts for thumbnail overlay
     linkedin_post: str = ""  # LinkedIn post for sharing
 
 class ClipSuggestion(BaseModel):

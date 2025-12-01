@@ -39,6 +39,13 @@ class SuggestionsService:
             "title": "Título atractivo para YouTube (máximo 60 caracteres)",
             "description": "Descripción SEO de 150-200 palabras que resuma el contenido, incluya palabras clave relevantes y sea atractiva para el público objetivo",
             "thumbnail_prompt": "Prompt detallado para generar una imagen thumbnail llamativa que incluya elementos visuales específicos del contenido, colores, texto y composición",
+            "thumbnail_texts": [
+                "TEXTO CLICKBAIT 1",
+                "ESTO CAMBIA TODO",
+                "NO TE LO PIERDAS",
+                "SECRETO REVELADO",
+                "EL ERROR #1"
+            ],
             "highlights": [
                 {{"timestamp": "00:00", "text": "Introducción: el problema de los títulos"}},
                 {{"timestamp": "03:15", "text": "Cómo funciona el flujo completo de procesamiento"}},
@@ -71,6 +78,16 @@ class SuggestionsService:
         - Cada highlight debe representar un cambio de tema importante, momento clave o sección destacada
         - El timing debe reflejar los puntos de inflexión o temas principales del contenido
         - La descripción debe ser SEO optimizada y atractiva
+
+        PARA THUMBNAIL TEXTS (TEXTOS CLICKBAIT):
+        - Genera EXACTAMENTE 5 textos cortos y muy clickbait para poner encima del thumbnail
+        - Cada texto debe tener MÁXIMO 4-5 palabras
+        - Deben ser IMPACTANTES, generar CURIOSIDAD y ganas de hacer clic
+        - Usa recursos como: números, preguntas, exclusividad, urgencia, controversia
+        - Ejemplos de estilo: "NO HAGAS ESTO", "SECRETO REVELADO", "ESTO CAMBIA TODO", "NADIE TE DICE ESTO", "EL ERROR #1"
+        - Deben estar relacionados con el contenido REAL del video
+        - Usa MAYÚSCULAS para mayor impacto visual
+        - Pueden incluir emojis si aumentan el impacto
 
         PARA LINKEDIN POST:
         - Escribe un post SUPER HUMANO y conversacional para LinkedIn (350-500 palabras)
@@ -153,13 +170,29 @@ class SuggestionsService:
                 "Título opción 4 (máximo 60 caracteres)"
             ],
             "description": "Descripción SEO de 150-200 palabras optimizada según las instrucciones personalizadas",
-            "thumbnail_prompt": "Prompt detallado para thumbnail adaptado a las instrucciones personalizadas"
+            "thumbnail_prompt": "Prompt detallado para thumbnail adaptado a las instrucciones personalizadas",
+            "thumbnail_texts": [
+                "TEXTO CLICKBAIT 1",
+                "ESTO CAMBIA TODO",
+                "NO TE LO PIERDAS",
+                "SECRETO REVELADO",
+                "EL ERROR #1"
+            ]
         }}
 
         IMPORTANTE:
         - Los 4 títulos deben ser únicos y variados
         - Sigue las instrucciones personalizadas si se proporcionan
         - Escapa correctamente las comillas en el JSON
+
+        PARA THUMBNAIL TEXTS (TEXTOS CLICKBAIT):
+        - Genera EXACTAMENTE 5 textos cortos y muy clickbait para poner encima del thumbnail
+        - Cada texto debe tener MÁXIMO 4-5 palabras
+        - Deben ser IMPACTANTES, generar CURIOSIDAD y ganas de hacer clic
+        - Usa recursos como: números, preguntas, exclusividad, urgencia, controversia
+        - Ejemplos: "NO HAGAS ESTO", "SECRETO REVELADO", "ESTO CAMBIA TODO", "NADIE TE DICE ESTO", "EL ERROR #1"
+        - Relacionados con el contenido REAL del video
+        - Usa MAYÚSCULAS para mayor impacto visual
         """
 
         print(f"DEBUG: Regenerating suggestions with ID: {analysis_id}")
@@ -229,6 +262,11 @@ class SuggestionsService:
                 result['linkedin_post'] = "Post para LinkedIn generado automáticamente."
                 print(f"DEBUG: No linkedin_post in response, adding default")
 
+            # Ensure thumbnail_texts key exists
+            if 'thumbnail_texts' not in result:
+                result['thumbnail_texts'] = ["MIRA ESTO", "NO TE LO PIERDAS", "INCREÍBLE", "DEBES VERLO", "WOW"]
+                print(f"DEBUG: No thumbnail_texts in response, adding default")
+
             # DEBUG: If no action items found, add a demo one for testing UI
             if len(result.get('action_items', [])) == 0:
                 print("DEBUG: No action items detected - adding demo item for UI testing")
@@ -253,6 +291,7 @@ class SuggestionsService:
                 ] if "titles" in response_text.lower() else None,
                 "description": "Descripción generada automáticamente basada en el contenido del video.",
                 "thumbnail_prompt": "Thumbnail atractivo para video de YouTube",
+                "thumbnail_texts": ["MIRA ESTO", "NO TE LO PIERDAS", "INCREÍBLE", "DEBES VERLO", "WOW"],
                 "highlights": [],
                 "action_items": [],
                 "linkedin_post": "Post para LinkedIn generado automáticamente."

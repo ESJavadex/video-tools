@@ -101,8 +101,10 @@ class VideoProcessor:
                 "title": f"Video: {original_filename}",
                 "description": "AI suggestions failed to generate. Please use the regenerate feature to try again with your saved transcription.",
                 "thumbnail_prompt": "Video thumbnail",
+                "thumbnail_texts": ["MIRA ESTO", "NO TE LO PIERDAS", "INCREÍBLE", "DEBES VERLO", "WOW"],
                 "highlights": [],
-                "action_items": []
+                "action_items": [],
+                "linkedin_post": ""
             }
 
         # Parse highlights from suggestions (limit to maximum 5)
@@ -132,8 +134,10 @@ class VideoProcessor:
             title=suggestions_result.get("title", ""),
             description=suggestions_result.get("description", ""),
             thumbnail_prompt=suggestions_result.get("thumbnail_prompt", ""),
+            thumbnail_texts=suggestions_result.get("thumbnail_texts", []),
             highlights=highlights,
-            action_items=action_items
+            action_items=action_items,
+            linkedin_post=suggestions_result.get("linkedin_post", "")
         )
 
         return VideoTranscriptionResponse(

@@ -8,7 +8,8 @@ import {
   Sparkles,
   Clock,
   RefreshCw,
-  Settings
+  Settings,
+  Type
 } from 'lucide-react';
 import { VideoSuggestions, TranscriptionSegment, RegenerateSuggestionsResponse } from '../types';
 
@@ -310,6 +311,61 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
           </div>
         </div>
 
+        {/* Thumbnail Clickbait Texts */}
+        {((regeneratedSuggestions?.thumbnail_texts && regeneratedSuggestions.thumbnail_texts.length > 0) ||
+          (suggestions.thumbnail_texts && suggestions.thumbnail_texts.length > 0)) && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-gray-700 flex items-center">
+                <Type className="w-4 h-4 mr-1" />
+                Textos Clickbait para Thumbnail
+              </label>
+              <button
+                onClick={() => copyToClipboard(
+                  (regeneratedSuggestions?.thumbnail_texts || suggestions.thumbnail_texts || []).join('\n'),
+                  'thumbnail-texts'
+                )}
+                className="text-sm text-white bg-orange-500 hover:bg-orange-600 flex items-center px-3 py-1.5 rounded"
+              >
+                {copiedField === 'thumbnail-texts' ? (
+                  <>
+                    <Check className="w-3 h-3 mr-1" />
+                    Copiado
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3 h-3 mr-1" />
+                    Copiar todos
+                  </>
+                )}
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {(regeneratedSuggestions?.thumbnail_texts || suggestions.thumbnail_texts || []).map((text, index) => (
+                <div
+                  key={index}
+                  onClick={() => copyToClipboard(text, `thumbnail-text-${index}`)}
+                  className="p-3 bg-gradient-to-r from-orange-100 to-red-100 rounded-lg border-2 border-orange-300 cursor-pointer hover:border-orange-500 hover:shadow-md transition-all group"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-orange-600 font-medium">#{index + 1}</span>
+                    {copiedField === `thumbnail-text-${index}` ? (
+                      <Check className="w-3 h-3 text-green-600" />
+                    ) : (
+                      <Copy className="w-3 h-3 text-orange-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    )}
+                  </div>
+                  <p className="text-gray-800 font-bold text-center mt-1">{text}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500 italic flex items-center">
+              <span className="mr-2">🔥</span>
+              Textos clickbait cortos e impactantes para superponer en el thumbnail. Haz clic en cualquiera para copiarlo.
+            </p>
+          </div>
+        )}
+
         {/* LinkedIn Post */}
         {(suggestions.linkedin_post || regeneratedSuggestions?.linkedin_post) && (
           <div className="space-y-2">
@@ -320,7 +376,7 @@ const SuggestionsPanel: React.FC<SuggestionsPanelProps> = ({ suggestions, transc
               </label>
               <button
                 onClick={() => copyToClipboard(
-                  regeneratedSuggestions?.linkedin_post || suggestions.linkedin_post,
+                  regeneratedSuggestions?.linkedin_post || suggestions.linkedin_post || '',
                   'linkedin-post'
                 )}
                 className="text-sm text-white bg-blue-600 hover:bg-blue-700 flex items-center px-3 py-1.5 rounded"

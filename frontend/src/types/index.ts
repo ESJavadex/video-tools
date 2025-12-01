@@ -16,8 +16,10 @@ export interface VideoSuggestions {
   titles?: string[]; // Multiple title options
   description: string;
   thumbnail_prompt: string;
+  thumbnail_texts?: string[]; // Clickbait texts for thumbnail overlay
   highlights: TranscriptionSegment[];
   action_items?: ActionItem[];
+  linkedin_post?: string; // LinkedIn post for sharing
 }
 
 export interface VideoTranscriptionResponse {
@@ -46,6 +48,8 @@ export interface RegenerateSuggestionsResponse {
   titles: string[];
   description: string;
   thumbnail_prompt: string;
+  thumbnail_texts?: string[]; // Clickbait texts for thumbnail overlay
+  linkedin_post?: string; // LinkedIn post for sharing
 }
 
 export interface ClipSuggestion {

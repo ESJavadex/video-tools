@@ -234,6 +234,7 @@ async def regenerate_suggestions(request: RegenerateSuggestionsRequest):
             titles=result.get("titles", []),
             description=result.get("description", ""),
             thumbnail_prompt=result.get("thumbnail_prompt", ""),
+            thumbnail_texts=result.get("thumbnail_texts", []),
             linkedin_post=result.get("linkedin_post", "")
         )
 
