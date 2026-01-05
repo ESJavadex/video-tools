@@ -57,9 +57,9 @@ else
 fi
 
 # Start backend
-echo -e "${GREEN}Starting backend server on port 8000...${NC}"
+echo -e "${GREEN}Starting backend server on port 8009...${NC}"
 cd backend
-python -m uvicorn app.main:app --reload --port 8000 --timeout-keep-alive 3600 &
+python -m uvicorn app.main:app --reload --port 8009 --timeout-keep-alive 3600 &
 BACKEND_PID=$!
 cd ..
 
@@ -74,10 +74,10 @@ if [ "$FRONTEND_EXISTS" = true ]; then
     FRONTEND_PID=$!
     cd ..
 
-    echo -e "${GREEN}✓ Backend running at: http://localhost:8000${NC}"
+    echo -e "${GREEN}✓ Backend running at: http://localhost:8009${NC}"
     echo -e "${GREEN}✓ Frontend running at: http://localhost:5173${NC}"
 else
-    echo -e "${GREEN}✓ Backend running at: http://localhost:8000${NC}"
+    echo -e "${GREEN}✓ Backend running at: http://localhost:8009${NC}"
 fi
 
 echo -e "${YELLOW}Press Ctrl+C to stop all services${NC}"
